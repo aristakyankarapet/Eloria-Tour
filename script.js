@@ -6,7 +6,12 @@ const CONTACT = {
 
 const ROUTES = [
   {
-    id: "dilijan", img: "assets/img/dilijan.jpg",
+    id: "dilijan",
+    photos: [
+      { src: "assets/img/dilijan.jpg", name: { hy: "Դիլիջան", en: "Dilijan", ru: "Дилижан" } },
+      { src: "assets/img/haghartsin.jpg", name: { hy: "Հաղարծին", en: "Haghartsin", ru: "Агарцин" } },
+      { src: "assets/img/goshavank.jpg", name: { hy: "Գոշավանք", en: "Goshavank", ru: "Гошаванк" } },
+    ],
     title: { hy: "Դիլիջան – Հաղարծին – Գոշավանք", en: "Dilijan – Haghartsin – Goshavank", ru: "Дилижан – Агарцин – Гошаванк" },
     time: { hy: "≈ 9 ժամ", en: "≈ 9 hours", ru: "≈ 9 часов" },
     text: {
@@ -16,7 +21,12 @@ const ROUTES = [
     },
   },
   {
-    id: "garni", img: "assets/img/garni.jpg",
+    id: "garni",
+    photos: [
+      { src: "assets/img/garni.jpg", name: { hy: "Գառնիի տաճար", en: "Garni Temple", ru: "Храм Гарни" } },
+      { src: "assets/img/symphony.jpg", name: { hy: "Քարերի սիմֆոնիա", en: "Symphony of Stones", ru: "Симфония камней" } },
+      { src: "assets/img/geghard.jpg", name: { hy: "Գեղարդ", en: "Geghard", ru: "Гегард" } },
+    ],
     title: { hy: "Գառնի – Գեղարդ", en: "Garni – Geghard", ru: "Гарни – Гегард" },
     time: { hy: "≈ 5 ժամ", en: "≈ 5 hours", ru: "≈ 5 часов" },
     text: {
@@ -26,7 +36,12 @@ const ROUTES = [
     },
   },
   {
-    id: "noravank", img: "assets/img/noravank.jpg",
+    id: "noravank",
+    photos: [
+      { src: "assets/img/khorvirap.jpg", name: { hy: "Խոր Վիրապ", en: "Khor Virap", ru: "Хор Вирап" } },
+      { src: "assets/img/noravank.jpg", name: { hy: "Նորավանք", en: "Noravank", ru: "Нораванк" } },
+      { src: "assets/img/areni.jpg", name: { hy: "Արենիի գինի", en: "Areni wine", ru: "Вино Арени" } },
+    ],
     title: { hy: "Խոր Վիրապ – Նորավանք – Արենի", en: "Khor Virap – Noravank – Areni", ru: "Хор Вирап – Нораванк – Арени" },
     time: { hy: "≈ 8 ժամ", en: "≈ 8 hours", ru: "≈ 8 часов" },
     text: {
@@ -36,7 +51,12 @@ const ROUTES = [
     },
   },
   {
-    id: "sevan", img: "assets/img/sevan.jpg",
+    id: "sevan",
+    photos: [
+      { src: "assets/img/sevan.jpg", name: { hy: "Սևանա լիճ", en: "Lake Sevan", ru: "Озеро Севан" } },
+      { src: "assets/img/sevanavank.jpg", name: { hy: "Սևանավանք", en: "Sevanavank", ru: "Севанаванк" } },
+      { src: "assets/img/parz.jpg", name: { hy: "Պարզ լիճ, Դիլիջան", en: "Lake Parz, Dilijan", ru: "Озеро Парз, Дилижан" } },
+    ],
     title: { hy: "Սևան – Սևանավանք – Դիլիջան", en: "Sevan – Sevanavank – Dilijan", ru: "Севан – Севанаванк – Дилижан" },
     time: { hy: "≈ 8 ժամ", en: "≈ 8 hours", ru: "≈ 8 часов" },
     text: {
@@ -46,7 +66,12 @@ const ROUTES = [
     },
   },
   {
-    id: "tatev", img: "assets/img/tatev.jpg",
+    id: "tatev",
+    photos: [
+      { src: "assets/img/jermuk.jpg", name: { hy: "Ջերմուկ", en: "Jermuk", ru: "Джермук" } },
+      { src: "assets/img/tatev.jpg", name: { hy: "Տաթև", en: "Tatev", ru: "Татев" } },
+      { src: "assets/img/goris.jpg", name: { hy: "Գորիս", en: "Goris", ru: "Горис" } },
+    ],
     title: { hy: "Ջերմուկ – Տաթև – Գորիս", en: "Jermuk – Tatev – Goris", ru: "Джермук – Татев – Горис" },
     time: { hy: "1–2 օր", en: "1–2 days", ru: "1–2 дня" },
     text: {
@@ -71,7 +96,7 @@ const T = {
     "f4.t": "Ձեր սեփական երթուղին", "f4.d": "Ասեք, թե ուր եք ուզում գնալ, և մենք կկազմենք ճանապարհը։",
     "routes.title": "Մեր երթուղիները",
     "routes.lead": "Հինգ ճանապարհ, որոնք բացում են Հայաստանի հոգին՝ վանքերից մինչև լեռնային լճեր։",
-    "routes.book": "Ամրագրել",
+    "routes.book": "Ամրագրել", "gallery.prev": "Նախորդ նկարը", "gallery.next": "Հաջորդ նկարը",
     "custom.t": "Ձեր երազանքի երթուղին", "custom.d": "Ամբերդ, Սաղմոսավանք, Հաղպատ, թե՞ մի վայր, որի մասին քչերը գիտեն։ Գրեք մեզ, և մենք կկազմակերպենք։", "custom.btn": "Առաջարկել երթուղի",
     "classes.title": "Ընտրեք ձեր հարմարավետությունը",
     "classes.lead": "Երկու դաս՝ մեկ որակ։ Բոլոր տուրերն անցկացնում են փորձառու վարորդներ և պրոֆեսիոնալ գիդեր։",
@@ -92,7 +117,7 @@ const T = {
     "msg.head": "Բարև Ձեզ, ցանկանում եմ ամրագրել տուր Eloria Tour-ում։",
     "toast.copied": "Հաղորդագրությունը պատճենված է․ տեղադրեք այն չատում։",
     "contacts.meet": "Մեկնում՝ Հանրապետության հրապարակ, Երևան",
-    "credits": "Լուսանկարներ՝ Wikimedia Commons, CC BY-SA",
+    "credits": "Լուսանկարներ՝ Wikimedia Commons, CC BY / CC BY-SA",
   },
   en: {
     "title": "Eloria Tour — Tours in Armenia",
@@ -107,7 +132,7 @@ const T = {
     "f4.t": "Your own route", "f4.d": "Tell us where you want to go, and we will plan the journey.",
     "routes.title": "Our routes",
     "routes.lead": "Five journeys that reveal the soul of Armenia — from monasteries to mountain lakes.",
-    "routes.book": "Book",
+    "routes.book": "Book", "gallery.prev": "Previous photo", "gallery.next": "Next photo",
     "custom.t": "Your dream route", "custom.d": "Amberd, Saghmosavank, Haghpat — or a place few people know? Write to us and we will make it happen.", "custom.btn": "Suggest a route",
     "classes.title": "Choose your comfort",
     "classes.lead": "Two classes, one standard of care. Every tour is led by experienced drivers and professional guides.",
@@ -128,7 +153,7 @@ const T = {
     "msg.head": "Hello! I would like to book a tour with Eloria Tour.",
     "toast.copied": "Message copied — paste it into the chat.",
     "contacts.meet": "Departure: Republic Square, Yerevan",
-    "credits": "Photos: Wikimedia Commons, CC BY-SA",
+    "credits": "Photos: Wikimedia Commons, CC BY / CC BY-SA",
   },
   ru: {
     "title": "Eloria Tour — Туры по Армении",
@@ -143,7 +168,7 @@ const T = {
     "f4.t": "Ваш собственный маршрут", "f4.d": "Скажите, куда хотите поехать, а мы составим путь.",
     "routes.title": "Наши маршруты",
     "routes.lead": "Пять дорог, открывающих душу Армении — от монастырей до горных озёр.",
-    "routes.book": "Забронировать",
+    "routes.book": "Забронировать", "gallery.prev": "Предыдущее фото", "gallery.next": "Следующее фото",
     "custom.t": "Маршрут вашей мечты", "custom.d": "Амберд, Сагмосаванк, Ахпат — или место, о котором знают немногие? Напишите нам, и мы всё организуем.", "custom.btn": "Предложить маршрут",
     "classes.title": "Выберите свой комфорт",
     "classes.lead": "Два класса — одно качество. Все туры проводят опытные водители и профессиональные гиды.",
@@ -164,7 +189,7 @@ const T = {
     "msg.head": "Здравствуйте! Хочу забронировать тур в Eloria Tour.",
     "toast.copied": "Сообщение скопировано — вставьте его в чат.",
     "contacts.meet": "Отправление: площадь Республики, Ереван",
-    "credits": "Фото: Wikimedia Commons, CC BY-SA",
+    "credits": "Фото: Wikimedia Commons, CC BY / CC BY-SA",
   },
 };
 
@@ -178,9 +203,20 @@ const t = (k) => T[lang][k] ?? k;
 function renderRoutes() {
   const cards = ROUTES.map((r, i) => `
     <article class="route reveal">
-      <div class="route__media">
-        <img src="${r.img}" alt="${r.title[lang]}" loading="lazy" width="900" height="600">
+      <div class="route__media gallery">
+        <div class="gallery__track">
+          ${r.photos.map((p) => `
+          <figure class="gallery__slide">
+            <img src="${p.src}" alt="${p.name[lang]}" loading="lazy" width="960" height="640">
+            <figcaption>${p.name[lang]}</figcaption>
+          </figure>`).join("")}
+        </div>
         <span class="route__num">${i + 1}</span>
+        <button class="gallery__btn gallery__btn--prev" type="button" aria-label="${t("gallery.prev")}" disabled>‹</button>
+        <button class="gallery__btn gallery__btn--next" type="button" aria-label="${t("gallery.next")}">›</button>
+        <div class="gallery__dots">
+          ${r.photos.map((p, n) => `<button type="button" aria-label="${p.name[lang]}" aria-current="${n === 0}"></button>`).join("")}
+        </div>
       </div>
       <div class="route__strip" aria-hidden="true"></div>
       <div class="route__body">
@@ -229,6 +265,31 @@ const io = "IntersectionObserver" in window
 function observeReveal() {
   $$(".reveal:not(.is-in)").forEach((el) => (io ? io.observe(el) : el.classList.add("is-in")));
 }
+
+// Route photo galleries: swipe, arrows and dots
+function slideTo(track, n) {
+  track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
+}
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".gallery__btn, .gallery__dots button");
+  if (!btn) return;
+  const g = btn.closest(".gallery");
+  const track = $(".gallery__track", g);
+  const cur = Math.round(track.scrollLeft / track.clientWidth);
+  if (btn.classList.contains("gallery__btn--prev")) slideTo(track, cur - 1);
+  else if (btn.classList.contains("gallery__btn--next")) slideTo(track, cur + 1);
+  else slideTo(track, $$(".gallery__dots button", g).indexOf(btn));
+});
+document.addEventListener("scroll", (e) => {
+  const track = e.target;
+  if (!track.classList?.contains("gallery__track")) return;
+  const g = track.parentElement;
+  const n = Math.round(track.scrollLeft / track.clientWidth);
+  const last = track.children.length - 1;
+  $$(".gallery__dots button", g).forEach((d, i) => d.setAttribute("aria-current", String(i === n)));
+  $(".gallery__btn--prev", g).disabled = n <= 0;
+  $(".gallery__btn--next", g).disabled = n >= last;
+}, true);
 
 // Mobile menu
 const burger = $(".burger");
