@@ -7,6 +7,7 @@
   --ink: #2B1A14;
   --muted: #5E4A3F;
   --line: #E2D2BA;
+  --gold: #B7832F;
 
   --serif: "Noto Serif Armenian", "Noto Serif", Georgia, serif;
   --sans: "Noto Sans Armenian", "Noto Sans", system-ui, sans-serif;
@@ -137,7 +138,30 @@ ul, ol { margin: 0; padding: 0; }
 .section__head h2, .book__intro h2 { font-size: 24px; }
 .section__head p, .book__intro p { color: var(--muted); margin-top: 12px; }
 @media (min-width: 768px) { .section__head h2, .book__intro h2 { font-size: 32px; } }
-.star { width: 32px; height: 32px; margin: 0 auto 16px; }
+/* Pomegranate & grapes heading ornament */
+.ornament { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.ornament::before, .ornament::after {
+  content: ""; width: 48px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.ornament::after { transform: scaleX(-1); }
+.ornament img:nth-child(1), .ornament img:nth-child(3) { width: 32px; height: auto; }
+.ornament img:nth-child(2) { width: 48px; height: auto; }
+.flip { transform: scaleX(-1); }
+
+/* Carved grapevine frieze */
+.vine { height: 48px; background: url("assets/vine.svg") repeat-x center / auto 48px; }
+.book { position: relative; padding-top: 0; }
+.vine--top { margin-bottom: 48px; }
+@media (min-width: 768px) { .vine--top { margin-bottom: 64px; } }
+
+/* Fruit still life under the booking steps */
+.still-life { display: flex; align-items: flex-end; justify-content: center; gap: 0; margin-top: 48px; }
+.still-life img { width: 72px; height: auto; transition: transform .8s var(--ease); }
+.still-life img:nth-child(2) { width: 104px; margin: 0 -8px; position: relative; z-index: 1; }
+.still-life img:nth-child(1) { transform: rotate(-12deg); }
+.still-life img:nth-child(3) { transform: scaleX(-1) rotate(-12deg); }
+@media (min-width: 900px) { .still-life { justify-content: flex-start; } .still-life img { width: 88px; } .still-life img:nth-child(2) { width: 128px; } }
 
 /* Features */
 .features { padding: 48px 0; }
@@ -192,12 +216,20 @@ ul, ol { margin: 0; padding: 0; }
 .route--custom .btn:hover { background: var(--apricot); color: var(--ink); }
 
 /* Classes */
-.classes { background: var(--ink); color: var(--cream); position: relative; }
+.classes { background: var(--ink); color: var(--cream); position: relative; overflow: hidden; }
 .classes::before {
   content: ""; position: absolute; inset: 0;
   background: url("assets/stars.svg") repeat center / 96px; opacity: .08; pointer-events: none;
 }
-.classes .container { position: relative; }
+.classes::after {
+  content: ""; position: absolute; width: 320px; height: 320px; right: -96px; top: -96px;
+  background: url("assets/rosette.svg") no-repeat center / contain; opacity: .14; pointer-events: none;
+}
+.classes .container { position: relative; z-index: 1; }
+.classes .section__head::before {
+  content: ""; display: block; width: 64px; height: 64px; margin: 0 auto 16px;
+  background: url("assets/rosette.svg") no-repeat center / contain;
+}
 .classes .section__head p { color: #E9DCC8; }
 .classes__grid { display: grid; gap: 24px; max-width: 880px; margin: 0 auto; }
 @media (min-width: 760px) { .classes__grid { grid-template-columns: 1fr 1fr; } }
@@ -227,7 +259,8 @@ ul, ol { margin: 0; padding: 0; }
 /* Booking */
 .book__grid { display: grid; gap: 32px; }
 @media (min-width: 900px) { .book__grid { grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; } }
-.book__intro .star { margin: 0 0 16px; }
+.book__intro .ornament { justify-content: flex-start; }
+.book__intro .ornament::before { display: none; }
 .book__intro p { max-width: 52ch; }
 .steps { list-style: none; counter-reset: s; display: grid; gap: 16px; margin-top: 32px; }
 .steps li { counter-increment: s; display: flex; gap: 16px; align-items: center; font-weight: 600; }
@@ -276,6 +309,7 @@ ul, ol { margin: 0; padding: 0; }
 .footer__grid { display: grid; gap: 32px; }
 @media (min-width: 760px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
 .footer h3 { font-size: 20px; margin-bottom: 16px; }
+.footer__rosette { width: 64px; height: 64px; margin-top: 24px; }
 .footer__motto { font: 600 20px/1.4 var(--serif); color: var(--apricot); margin-top: 16px; max-width: 24ch; }
 .contacts { list-style: none; display: grid; gap: 8px; }
 .contacts a { text-decoration: none; display: inline-block; padding: 8px 0; }
