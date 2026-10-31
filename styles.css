@@ -145,8 +145,8 @@ ul, ol { margin: 0; padding: 0; }
   background: linear-gradient(90deg, transparent, var(--gold));
 }
 .ornament::after { transform: scaleX(-1); }
-.ornament img:nth-child(1), .ornament img:nth-child(3) { width: 32px; height: auto; }
-.ornament img:nth-child(2) { width: 48px; height: auto; }
+.ornament img:nth-child(1), .ornament img:nth-child(3) { width: 40px; height: auto; }
+.ornament img:nth-child(2) { width: 56px; height: auto; }
 .flip { transform: scaleX(-1); }
 
 /* Carved grapevine frieze */
@@ -155,13 +155,6 @@ ul, ol { margin: 0; padding: 0; }
 .vine--top { margin-bottom: 48px; }
 @media (min-width: 768px) { .vine--top { margin-bottom: 64px; } }
 
-/* Fruit still life under the booking steps */
-.still-life { display: flex; align-items: flex-end; justify-content: center; gap: 0; margin-top: 48px; }
-.still-life img { width: 72px; height: auto; transition: transform .8s var(--ease); }
-.still-life img:nth-child(2) { width: 104px; margin: 0 -8px; position: relative; z-index: 1; }
-.still-life img:nth-child(1) { transform: rotate(-12deg); }
-.still-life img:nth-child(3) { transform: scaleX(-1) rotate(-12deg); }
-@media (min-width: 900px) { .still-life { justify-content: flex-start; } .still-life img { width: 88px; } .still-life img:nth-child(2) { width: 128px; } }
 
 /* Features */
 .features { padding: 48px 0; }
