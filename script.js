@@ -84,6 +84,12 @@ const ROUTES = [
 
 const T = {
   hy: {
+    "title.home": "Eloria Tour — Տուրեր Հայաստանում", "title.routes": "Երթուղիներ — Eloria Tour", "title.cars": "Մեքենաներ — Eloria Tour", "title.book": "Ամրագրում — Eloria Tour", "title.contacts": "Կապ — Eloria Tour",
+    "home.t": "Բացահայտեք Հայաստանը մեզ հետ", "home.d": "Ընտրեք երթուղին, մեքենայի դասը և ամրագրեք ձեր ճամփորդությունը մի քանի րոպեում։", "home.more": "Մանրամասն",
+    "tile.routes": "Հինգ ընտրված երթուղի և ձեր սեփականը", "tile.cars": "Ստանդարտ կամ Comfort՝ ձեր ընտրությամբ", "tile.book": "Լրացրեք ձևը և ուղարկեք մեզ",
+    "contacts.lead": "Մենք միշտ կապի մեջ ենք․ գրեք կամ զանգահարեք ձեզ հարմար ձևով։",
+    "c.phone": "Հեռախոս", "c.write": "Գրեք կամ հետևեք մեզ", "c.langsT": "Գիդերի լեզուները", "c.langsD": "Հայերեն, անգլերեն, ռուսերեն և իտալերեն",
+    "c.meetT": "Հանդիպման վայր", "c.meetD": "Բոլոր տուրերը մեկնում են Երևանի Հանրապետության հրապարակից։ Ճշգրիտ ժամը կհաստատենք ամրագրելիս։", "c.office": "Գրասենյակը՝ շուտով", "c.map": "Հանրապետության հրապարակ, Երևան",
     "title": "Eloria Tour — Տուրեր Հայաստանում",
     "nav.routes": "Երթուղիներ", "nav.classes": "Մեքենաներ", "nav.book": "Ամրագրում", "nav.contacts": "Կապ", "nav.menu": "Մենյու",
     "hero.eyebrow": "Տուրեր և էքսկուրսիաներ Հայաստանում",
@@ -120,6 +126,12 @@ const T = {
     "credits": "Լուսանկարներ՝ Wikimedia Commons, CC BY / CC BY-SA",
   },
   en: {
+    "title.home": "Eloria Tour — Tours in Armenia", "title.routes": "Routes — Eloria Tour", "title.cars": "Cars — Eloria Tour", "title.book": "Booking — Eloria Tour", "title.contacts": "Contacts — Eloria Tour",
+    "home.t": "Discover Armenia with us", "home.d": "Choose a route and a car class, and book your journey in a few minutes.", "home.more": "Learn more",
+    "tile.routes": "Five hand-picked routes, or your own", "tile.cars": "Standard or Comfort — your choice", "tile.book": "Fill in the form and send it to us",
+    "contacts.lead": "We are always in touch — write or call us however suits you.",
+    "c.phone": "Phone", "c.write": "Write to us or follow us", "c.langsT": "Guide languages", "c.langsD": "Armenian, English, Russian and Italian",
+    "c.meetT": "Meeting point", "c.meetD": "All tours depart from Republic Square in Yerevan. We will confirm the exact time when you book.", "c.office": "Office coming soon", "c.map": "Republic Square, Yerevan",
     "title": "Eloria Tour — Tours in Armenia",
     "nav.routes": "Routes", "nav.classes": "Cars", "nav.book": "Booking", "nav.contacts": "Contacts", "nav.menu": "Menu",
     "hero.eyebrow": "Tours and excursions in Armenia",
@@ -156,6 +168,12 @@ const T = {
     "credits": "Photos: Wikimedia Commons, CC BY / CC BY-SA",
   },
   ru: {
+    "title.home": "Eloria Tour — Туры по Армении", "title.routes": "Маршруты — Eloria Tour", "title.cars": "Автомобили — Eloria Tour", "title.book": "Бронирование — Eloria Tour", "title.contacts": "Контакты — Eloria Tour",
+    "home.t": "Откройте Армению вместе с нами", "home.d": "Выберите маршрут и класс автомобиля и забронируйте поездку за несколько минут.", "home.more": "Подробнее",
+    "tile.routes": "Пять избранных маршрутов или ваш собственный", "tile.cars": "Стандарт или Comfort — на ваш выбор", "tile.book": "Заполните форму и отправьте нам",
+    "contacts.lead": "Мы всегда на связи — пишите или звоните, как вам удобно.",
+    "c.phone": "Телефон", "c.write": "Пишите или подписывайтесь", "c.langsT": "Языки гидов", "c.langsD": "Армянский, английский, русский и итальянский",
+    "c.meetT": "Место встречи", "c.meetD": "Все туры отправляются с площади Республики в Ереване. Точное время подтвердим при бронировании.", "c.office": "Офис — скоро", "c.map": "Площадь Республики, Ереван",
     "title": "Eloria Tour — Туры по Армении",
     "nav.routes": "Маршруты", "nav.classes": "Автомобили", "nav.book": "Бронирование", "nav.contacts": "Контакты", "nav.menu": "Меню",
     "hero.eyebrow": "Туры и экскурсии по Армении",
@@ -200,8 +218,12 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const t = (k) => T[lang][k] ?? k;
 
+const page = document.body.dataset.page || "home";
+
 function renderRoutes() {
-  const cards = ROUTES.map((r, i) => `
+  const grid = $("#routesGrid");
+  if (grid) {
+    const cards = ROUTES.map((r, i) => `
     <article class="route reveal">
       <div class="route__media gallery">
         <div class="gallery__track">
@@ -223,24 +245,27 @@ function renderRoutes() {
         <h3>${r.title[lang]}</h3>
         <div class="route__meta"><span>${r.time[lang]}</span></div>
         <p>${r.text[lang]}</p>
-        <a class="btn btn--light" href="#book" data-route="${r.id}">${t("routes.book")}</a>
+        <a class="btn btn--light" href="booking.html?route=${r.id}">${t("routes.book")}</a>
       </div>
     </article>`).join("");
-  const custom = `
+    const custom = `
     <article class="route route--custom reveal">
       <div class="route__body">
         <h3>${t("custom.t")}</h3>
         <p>${t("custom.d")}</p>
-        <a class="btn" href="#book" data-route="custom">${t("custom.btn")}</a>
+        <a class="btn" href="booking.html?route=custom">${t("custom.btn")}</a>
       </div>
     </article>`;
-  $("#routesGrid").innerHTML = cards + custom;
+    grid.innerHTML = cards + custom;
+  }
 
   const sel = $("#f-route");
-  const current = sel.value;
-  sel.innerHTML = ROUTES.map((r) => `<option value="${r.id}">${r.title[lang]}</option>`).join("")
-    + `<option value="custom">${t("form.customOpt")}</option>`;
-  if (current) sel.value = current;
+  if (sel) {
+    const current = sel.value || new URLSearchParams(location.search).get("route");
+    sel.innerHTML = ROUTES.map((r) => `<option value="${r.id}">${r.title[lang]}</option>`).join("")
+      + `<option value="custom">${t("form.customOpt")}</option>`;
+    if (current && [...sel.options].some((o) => o.value === current)) sel.value = current;
+  }
   observeReveal();
 }
 
@@ -248,12 +273,14 @@ function applyLang(next) {
   lang = next;
   localStorage.setItem("eloria-lang", lang);
   document.documentElement.lang = lang;
-  document.title = t("title");
+  document.title = t("title." + page);
   $$("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
   $$("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
   $$("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });
+  $$("[data-i18n-title]").forEach((el) => { el.title = t(el.dataset.i18nTitle); });
   $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   renderRoutes();
+  if (typeof syncCustom === "function") syncCustom();
 }
 
 // Reveal on scroll
@@ -266,30 +293,54 @@ function observeReveal() {
   $$(".reveal:not(.is-in)").forEach((el) => (io ? io.observe(el) : el.classList.add("is-in")));
 }
 
-// Route photo galleries: swipe, arrows and dots
+// Route photo galleries: swipe, arrows, dots and autoplay
+const slideIndex = (track) => Math.round(track.scrollLeft / track.clientWidth);
 function slideTo(track, n) {
   track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
 }
+const holdGallery = (g) => { g.dataset.holdUntil = Date.now() + 8000; };
+
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".gallery__btn, .gallery__dots button");
   if (!btn) return;
   const g = btn.closest(".gallery");
   const track = $(".gallery__track", g);
-  const cur = Math.round(track.scrollLeft / track.clientWidth);
+  const cur = slideIndex(track);
+  holdGallery(g);
   if (btn.classList.contains("gallery__btn--prev")) slideTo(track, cur - 1);
   else if (btn.classList.contains("gallery__btn--next")) slideTo(track, cur + 1);
   else slideTo(track, $$(".gallery__dots button", g).indexOf(btn));
+});
+document.addEventListener("pointerdown", (e) => {
+  const g = e.target.closest(".gallery");
+  if (g) holdGallery(g);
 });
 document.addEventListener("scroll", (e) => {
   const track = e.target;
   if (!track.classList?.contains("gallery__track")) return;
   const g = track.parentElement;
-  const n = Math.round(track.scrollLeft / track.clientWidth);
+  const n = slideIndex(track);
   const last = track.children.length - 1;
   $$(".gallery__dots button", g).forEach((d, i) => d.setAttribute("aria-current", String(i === n)));
   $(".gallery__btn--prev", g).disabled = n <= 0;
   $(".gallery__btn--next", g).disabled = n >= last;
 }, true);
+
+// Each gallery advances every 4.5s; neighbours are staggered so they don't all change at once
+if ($("#routesGrid") && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let tick = 0;
+  setInterval(() => {
+    tick += 1;
+    if (document.hidden) return;
+    $$(".gallery").forEach((g, i) => {
+      if ((tick + i) % 3 !== 0) return;
+      if (g.matches(":hover, :focus-within") || Date.now() < (+g.dataset.holdUntil || 0)) return;
+      const track = $(".gallery__track", g);
+      const next = slideIndex(track) + 1;
+      slideTo(track, next >= track.children.length ? 0 : next);
+    });
+  }, 1500);
+}
 
 // Mobile menu
 const burger = $(".burger");
@@ -299,29 +350,8 @@ burger.addEventListener("click", () => {
   burger.setAttribute("aria-expanded", String(open));
   nav.classList.toggle("is-open", open);
 });
-nav.addEventListener("click", (e) => {
-  if (e.target.closest("a")) { burger.setAttribute("aria-expanded", "false"); nav.classList.remove("is-open"); }
-});
 
 $$(".lang button").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.lang)));
-
-// Pre-fill the form from route / class buttons
-const routeSel = $("#f-route");
-const customField = $("#customField");
-const syncCustom = () => { customField.hidden = routeSel.value !== "custom"; };
-routeSel.addEventListener("change", syncCustom);
-
-document.addEventListener("click", (e) => {
-  const r = e.target.closest("[data-route]");
-  if (r) { routeSel.value = r.dataset.route; syncCustom(); }
-  const c = e.target.closest("[data-class]");
-  if (c) { const radio = $(`input[name="class"][value="${c.dataset.class}"]`); if (radio) radio.checked = true; }
-});
-
-// Booking: build a message and open the chosen messenger
-const form = $("#bookForm");
-const dateInput = $("#f-date");
-dateInput.min = new Date().toISOString().slice(0, 10);
 
 function toast(text) {
   const el = $("#toast");
@@ -331,53 +361,68 @@ function toast(text) {
   toast.timer = setTimeout(() => el.classList.remove("is-on"), 4000);
 }
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const via = e.submitter?.dataset.via || "whatsapp";
-  const required = [$("#f-name"), $("#f-phone"), dateInput];
-  let ok = true;
-  required.forEach((el) => {
-    const bad = !el.value.trim();
-    el.classList.toggle("is-invalid", bad);
-    if (bad) ok = false;
+// Booking page: pre-fill from the link (?route=… / ?class=…) and send via messenger
+const form = $("#bookForm");
+const routeSel = $("#f-route");
+const customField = $("#customField");
+const syncCustom = form ? () => { customField.hidden = routeSel.value !== "custom"; } : null;
+
+if (form) {
+  routeSel.addEventListener("change", syncCustom);
+  const cls = new URLSearchParams(location.search).get("class");
+  const radio = cls && $(`input[name="class"][value="${cls}"]`);
+  if (radio) radio.checked = true;
+
+  const dateInput = $("#f-date");
+  dateInput.min = new Date().toISOString().slice(0, 10);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const via = e.submitter?.dataset.via || "whatsapp";
+    const required = [$("#f-name"), $("#f-phone"), dateInput];
+    let ok = true;
+    required.forEach((el) => {
+      const bad = !el.value.trim();
+      el.classList.toggle("is-invalid", bad);
+      if (bad) ok = false;
+    });
+    $("#formError").hidden = ok;
+    if (!ok) { required.find((el) => !el.value.trim()).focus(); return; }
+
+    const d = new FormData(form);
+    const route = d.get("route") === "custom"
+      ? `${t("form.customOpt")}: ${d.get("custom") || "—"}`
+      : ROUTES.find((r) => r.id === d.get("route")).title[lang];
+    const lines = [
+      t("msg.head"),
+      "",
+      `${t("form.name")}: ${d.get("name")}`,
+      `${t("form.phone")}: ${d.get("phone")}`,
+      `${t("form.route")}: ${route}`,
+      `${t("form.date")}: ${d.get("date")}`,
+      `${t("form.people")}: ${d.get("people")}`,
+      `${t("form.class")}: ${d.get("class") === "comfort" ? "Comfort" : t("std.t")}`,
+      `${t("form.guide")}: ${t("lang." + d.get("guide"))}`,
+    ];
+    if (d.get("note")) lines.push(`${t("form.note")}: ${d.get("note")}`);
+    const text = lines.join("\n");
+
+    if (via === "whatsapp") {
+      window.open(`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+      return;
+    }
+    // Telegram and Viber can't pre-fill a chat, so copy the text first
+    try { await navigator.clipboard.writeText(text); toast(t("toast.copied")); } catch { /* clipboard blocked */ }
+    const url = via === "telegram"
+      ? `https://t.me/${CONTACT.telegram}`
+      : `viber://chat?number=%2B${CONTACT.phone}`;
+    setTimeout(() => window.open(url, "_blank", "noopener"), 600);
   });
-  $("#formError").hidden = ok;
-  if (!ok) { required.find((el) => !el.value.trim()).focus(); return; }
 
-  const d = new FormData(form);
-  const route = d.get("route") === "custom"
-    ? `${t("form.customOpt")}: ${d.get("custom") || "—"}`
-    : ROUTES.find((r) => r.id === d.get("route")).title[lang];
-  const lines = [
-    t("msg.head"),
-    "",
-    `${t("form.name")}: ${d.get("name")}`,
-    `${t("form.phone")}: ${d.get("phone")}`,
-    `${t("form.route")}: ${route}`,
-    `${t("form.date")}: ${d.get("date")}`,
-    `${t("form.people")}: ${d.get("people")}`,
-    `${t("form.class")}: ${d.get("class") === "comfort" ? "Comfort" : t("std.t")}`,
-    `${t("form.guide")}: ${t("lang." + d.get("guide"))}`,
-  ];
-  if (d.get("note")) lines.push(`${t("form.note")}: ${d.get("note")}`);
-  const text = lines.join("\n");
-
-  if (via === "whatsapp") {
-    window.open(`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
-    return;
-  }
-  // Telegram and Viber can't pre-fill a chat, so copy the text first
-  try { await navigator.clipboard.writeText(text); toast(t("toast.copied")); } catch { /* clipboard blocked */ }
-  const url = via === "telegram"
-    ? `https://t.me/${CONTACT.telegram}`
-    : `viber://chat?number=%2B${CONTACT.phone}`;
-  setTimeout(() => window.open(url, "_blank", "noopener"), 600);
-});
-
-form.addEventListener("input", (e) => {
-  if (e.target.classList.contains("is-invalid") && e.target.value.trim()) e.target.classList.remove("is-invalid");
-});
+  form.addEventListener("input", (e) => {
+    if (e.target.classList.contains("is-invalid") && e.target.value.trim()) e.target.classList.remove("is-invalid");
+  });
+}
 
 $("#year").textContent = new Date().getFullYear();
 applyLang(lang);
-syncCustom();

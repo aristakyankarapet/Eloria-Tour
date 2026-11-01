@@ -10,21 +10,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif+Armenian:wght@600&family=Noto+Serif:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
-<body>
+<body data-page="home">
 
-<header class="header" id="top">
+<header class="header">
   <div class="container header__row">
-    <a class="logo" href="#top" aria-label="Eloria Tour">
+    <a class="logo" href="index.html" aria-label="Eloria Tour">
       <img src="assets/logo.svg" alt="" width="40" height="40">
       <span>Eloria Tour</span>
     </a>
     <nav class="nav" id="nav">
-      <a href="#routes" data-i18n="nav.routes">Երթուղիներ</a>
-      <a href="#classes" data-i18n="nav.classes">Մեքենաներ</a>
-      <a href="#book" data-i18n="nav.book">Ամրագրում</a>
-      <a href="#contacts" data-i18n="nav.contacts">Կապ</a>
+      <a href="routes.html" data-i18n="nav.routes">Երթուղիներ</a>
+      <a href="cars.html" data-i18n="nav.classes">Մեքենաներ</a>
+      <a href="booking.html" data-i18n="nav.book">Ամրագրում</a>
+      <a href="contacts.html" data-i18n="nav.contacts">Կապ</a>
     </nav>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="hy">ՀԱՅ</button>
@@ -45,8 +45,8 @@
       <h1 data-i18n="hero.title">Ամեն ճանապարհ՝ հազարամյա պատմություն</h1>
       <p class="hero__lead" data-i18n="hero.lead">Հնագույն վանքեր, լեռնային ճանապարհներ և սրտաբուխ հյուրընկալություն։ Eloria Tour-ը ձեզ կտանի այնտեղ, որտեղ քարը խոսում է, իսկ ժամանակը կանգ է առնում։</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="#routes" data-i18n="hero.cta1">Ընտրել երթուղի</a>
-        <a class="btn btn--ghost" href="#book" data-i18n="hero.cta2">Իմ երթուղին</a>
+        <a class="btn btn--primary" href="routes.html" data-i18n="hero.cta1">Ընտրել երթուղի</a>
+        <a class="btn btn--ghost" href="booking.html?route=custom" data-i18n="hero.cta2">Իմ երթուղին</a>
       </div>
     </div>
   </section>
@@ -82,129 +82,50 @@
 
   <div class="vine" aria-hidden="true"></div>
 
-  <section class="section routes" id="routes">
+  <section class="section explore">
     <div class="container">
       <header class="section__head reveal">
-        <div class="ornament" aria-hidden="true"><img src="assets/grapes.svg" alt="" width="32" height="38"><img src="assets/pomegranate.svg" alt="" width="48" height="54"><img class="flip" src="assets/grapes.svg" alt="" width="32" height="38"></div>
-        <h2 data-i18n="routes.title">Մեր երթուղիները</h2>
-        <p data-i18n="routes.lead">Հինգ ճանապարհ, որոնք բացում են Հայաստանի հոգին՝ վանքերից մինչև լեռնային լճեր։</p>
+        <div class="ornament" aria-hidden="true"><img src="assets/grapes.svg" alt="" width="40" height="45"><img src="assets/pomegranate.svg" alt="" width="56" height="63"><img class="flip" src="assets/grapes.svg" alt="" width="40" height="45"></div>
+        <h2 data-i18n="home.t">Բացահայտեք Հայաստանը մեզ հետ</h2>
+        <p data-i18n="home.d">Ընտրեք երթուղին, մեքենայի դասը և ամրագրեք ձեր ճամփորդությունը մի քանի րոպեում։</p>
       </header>
-      <div class="routes__grid" id="routesGrid"></div>
-    </div>
-  </section>
-
-  <section class="section classes" id="classes">
-    <div class="container">
-      <header class="section__head reveal">
-        <h2 data-i18n="classes.title">Ընտրեք ձեր հարմարավետությունը</h2>
-        <p data-i18n="classes.lead">Երկու դաս՝ մեկ որակ։ Բոլոր տուրերն անցկացնում են փորձառու վարորդներ և պրոֆեսիոնալ գիդեր։</p>
-      </header>
-      <div class="classes__grid">
-        <article class="class-card reveal">
-          <h3 data-i18n="std.t">Ստանդարտ</h3>
-          <p class="class-card__sub" data-i18n="std.sub">Հուսալի և հարմար՝ ցանկացած խմբի համար</p>
-          <ul class="checks">
-            <li data-i18n="std.1">Հարմարավետ սեդաններ և միկրոավտոբուսներ</li>
-            <li data-i18n="std.2">Փորձառու վարորդ</li>
-            <li data-i18n="std.3">Պրոֆեսիոնալ գիդ</li>
-            <li data-i18n="std.4">Կանգառներ լուսանկարների համար</li>
-          </ul>
-          <p class="price" data-i18n="price">Գինը՝ շուտով</p>
-          <a class="btn btn--light" href="#book" data-class="standard" data-i18n="classes.choose">Ընտրել</a>
-        </article>
-        <article class="class-card class-card--comfort reveal">
-          <span class="badge">Comfort</span>
-          <h3 data-i18n="cmf.t">Comfort</h3>
-          <p class="class-card__sub" data-i18n="cmf.sub">Ամեն ինչ ստանդարտից, գումարած՝</p>
-          <ul class="checks">
-            <li data-i18n="cmf.1">Նոր արտադրության հարմարավետ մեքենաներ</li>
-            <li data-i18n="cmf.2">Թանգարանների մուտքի տոմսերը ներառված են</li>
-            <li data-i18n="cmf.3">Խմելու ջուր ամբողջ ճանապարհին</li>
-            <li data-i18n="cmf.4">Wi‑Fi մեքենայում</li>
-          </ul>
-          <p class="price" data-i18n="price">Գինը՝ շուտով</p>
-          <a class="btn btn--primary" href="#book" data-class="comfort" data-i18n="classes.choose">Ընտրել</a>
-        </article>
+      <div class="tiles">
+        <a class="tile reveal" href="routes.html">
+          <img src="assets/img/haghartsin.jpg" alt="" loading="lazy" width="960" height="640">
+          <span class="tile__body">
+            <span class="tile__title" data-i18n="nav.routes">Երթուղիներ</span>
+            <span class="tile__text" data-i18n="tile.routes">Հինգ ընտրված երթուղի և ձեր սեփականը</span>
+            <span class="tile__more"><span data-i18n="home.more">Մանրամասն</span> →</span>
+          </span>
+        </a>
+        <a class="tile reveal" href="cars.html">
+          <img src="assets/img/sevan.jpg" alt="" loading="lazy" width="960" height="640">
+          <span class="tile__body">
+            <span class="tile__title" data-i18n="nav.classes">Մեքենաներ</span>
+            <span class="tile__text" data-i18n="tile.cars">Ստանդարտ կամ Comfort՝ ձեր ընտրությամբ</span>
+            <span class="tile__more"><span data-i18n="home.more">Մանրամասն</span> →</span>
+          </span>
+        </a>
+        <a class="tile reveal" href="booking.html">
+          <img src="assets/img/tatev.jpg" alt="" loading="lazy" width="960" height="640">
+          <span class="tile__body">
+            <span class="tile__title" data-i18n="nav.book">Ամրագրում</span>
+            <span class="tile__text" data-i18n="tile.book">Լրացրեք ձևը և ուղարկեք մեզ</span>
+            <span class="tile__more"><span data-i18n="home.more">Մանրամասն</span> →</span>
+          </span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section book" id="book">
-    <div class="vine vine--top" aria-hidden="true"></div>
-    <div class="container book__grid">
-      <div class="book__intro reveal">
-        <div class="ornament" aria-hidden="true"><img src="assets/grapes.svg" alt="" width="32" height="38"><img src="assets/pomegranate.svg" alt="" width="48" height="54"><img class="flip" src="assets/grapes.svg" alt="" width="32" height="38"></div>
-        <h2 data-i18n="book.title">Ամրագրեք կամ առաջարկեք ձեր երթուղին</h2>
-        <p data-i18n="book.lead">Ընտրեք տուրը կամ գրեք այն վայրերը, որոնք ցանկանում եք տեսնել։ Մենք կպատասխանենք շուտով՝ գնով և մանրամասներով։</p>
-        <ol class="steps">
-          <li data-i18n="book.s1">Լրացրեք ձևը</li>
-          <li data-i18n="book.s2">Ուղարկեք WhatsApp-ով, Telegram-ով կամ Viber-ով</li>
-          <li data-i18n="book.s3">Ստացեք հաստատում և ճամփա ընկեք</li>
-        </ol>
-      </div>
-
-      <form class="form reveal" id="bookForm" novalidate>
-        <div class="field">
-          <label for="f-name" data-i18n="form.name">Անուն</label>
-          <input id="f-name" name="name" required autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="f-phone" data-i18n="form.phone">Հեռախոս</label>
-          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+374 ...">
-        </div>
-        <div class="field field--full">
-          <label for="f-route" data-i18n="form.route">Երթուղի</label>
-          <select id="f-route" name="route"></select>
-        </div>
-        <div class="field field--full" id="customField" hidden>
-          <label for="f-custom" data-i18n="form.custom">Որտե՞ղ եք ուզում գնալ</label>
-          <textarea id="f-custom" name="custom" rows="3" data-i18n-ph="form.customPh" placeholder="Օրինակ՝ Ամբերդ, Արագած, Սաղմոսավանք"></textarea>
-        </div>
-        <div class="field">
-          <label for="f-date" data-i18n="form.date">Ամսաթիվ</label>
-          <input id="f-date" name="date" type="date" required>
-        </div>
-        <div class="field">
-          <label for="f-people" data-i18n="form.people">Մարդկանց քանակ</label>
-          <input id="f-people" name="people" type="number" min="1" max="50" value="2">
-        </div>
-        <fieldset class="field field--full">
-          <legend data-i18n="form.class">Մեքենայի դաս</legend>
-          <div class="segmented">
-            <label><input type="radio" name="class" value="standard" checked><span data-i18n="std.t">Ստանդարտ</span></label>
-            <label><input type="radio" name="class" value="comfort"><span>Comfort</span></label>
-          </div>
-        </fieldset>
-        <div class="field field--full">
-          <label for="f-lang" data-i18n="form.guide">Գիդի լեզուն</label>
-          <select id="f-lang" name="guide">
-            <option value="hy" data-i18n="lang.hy">Հայերեն</option>
-            <option value="en" data-i18n="lang.en">Անգլերեն</option>
-            <option value="ru" data-i18n="lang.ru">Ռուսերեն</option>
-            <option value="it" data-i18n="lang.it">Իտալերեն</option>
-          </select>
-        </div>
-        <div class="field field--full">
-          <label for="f-note" data-i18n="form.note">Մեկնաբանություն</label>
-          <textarea id="f-note" name="note" rows="2"></textarea>
-        </div>
-        <p class="form__error" id="formError" role="alert" hidden data-i18n="form.error">Խնդրում ենք լրացնել անունը, հեռախոսը և ամսաթիվը։</p>
-        <div class="form__send field--full">
-          <button class="btn btn--primary" type="submit" data-via="whatsapp">WhatsApp</button>
-          <button class="btn btn--light" type="submit" data-via="telegram">Telegram</button>
-          <button class="btn btn--light" type="submit" data-via="viber">Viber</button>
-        </div>
-      </form>
-    </div>
-  </section>
 </main>
 
 <div class="band" aria-hidden="true"></div>
 
-<footer class="footer" id="contacts">
+<footer class="footer">
   <div class="container footer__grid">
     <div>
-      <a class="logo logo--light" href="#top">
+      <a class="logo logo--light" href="index.html">
         <img src="assets/logo.svg" alt="" width="40" height="40">
         <span>Eloria Tour</span>
       </a>
@@ -251,6 +172,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>
