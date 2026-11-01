@@ -4,9 +4,13 @@ const CONTACT = {
   telegram: "eloriatour",
 };
 
+// Every tour starts at Republic Square, Yerevan
+const START = [40.1777, 44.5126];
+
 const ROUTES = [
   {
     id: "dilijan",
+    stops: [[40.7406, 44.8630], [40.8017, 44.8906], [40.7290, 44.9978]], // [lat, lon] for each photo place, in driving order
     photos: [
       { src: "assets/img/dilijan.jpg", name: { hy: "Դիլիջան", en: "Dilijan", ru: "Дилижан" } },
       { src: "assets/img/haghartsin.jpg", name: { hy: "Հաղարծին", en: "Haghartsin", ru: "Агарцин" } },
@@ -22,6 +26,7 @@ const ROUTES = [
   },
   {
     id: "garni",
+    stops: [[40.1124, 44.7302], [40.1172, 44.7376], [40.1403, 44.8183]], // [lat, lon] for each photo place, in driving order
     photos: [
       { src: "assets/img/garni.jpg", name: { hy: "Գառնիի տաճար", en: "Garni Temple", ru: "Храм Гарни" } },
       { src: "assets/img/symphony.jpg", name: { hy: "Քարերի սիմֆոնիա", en: "Symphony of Stones", ru: "Симфония камней" } },
@@ -37,6 +42,7 @@ const ROUTES = [
   },
   {
     id: "noravank",
+    stops: [[39.8783, 44.5762], [39.6844, 45.2328], [39.7209, 45.1838]], // [lat, lon] for each photo place, in driving order
     photos: [
       { src: "assets/img/khorvirap.jpg", name: { hy: "Խոր Վիրապ", en: "Khor Virap", ru: "Хор Вирап" } },
       { src: "assets/img/noravank.jpg", name: { hy: "Նորավանք", en: "Noravank", ru: "Нораванк" } },
@@ -52,6 +58,7 @@ const ROUTES = [
   },
   {
     id: "sevan",
+    stops: [[40.5530, 44.9510], [40.5644, 45.0119], [40.7525, 44.9625]], // [lat, lon] for each photo place, in driving order
     photos: [
       { src: "assets/img/sevan.jpg", name: { hy: "Սևանա լիճ", en: "Lake Sevan", ru: "Озеро Севан" } },
       { src: "assets/img/sevanavank.jpg", name: { hy: "Սևանավանք", en: "Sevanavank", ru: "Севанаванк" } },
@@ -67,6 +74,7 @@ const ROUTES = [
   },
   {
     id: "tatev",
+    stops: [[39.8414, 45.6727], [39.3796, 46.2502], [39.5074, 46.3383]], // [lat, lon] for each photo place, in driving order
     photos: [
       { src: "assets/img/jermuk.jpg", name: { hy: "Ջերմուկ", en: "Jermuk", ru: "Джермук" } },
       { src: "assets/img/tatev.jpg", name: { hy: "Տաթև", en: "Tatev", ru: "Татев" } },
@@ -115,7 +123,7 @@ const T = {
     "book.title": "Ամրագրեք կամ առաջարկեք ձեր երթուղին",
     "book.lead": "Ընտրեք տուրը կամ գրեք այն վայրերը, որոնք ցանկանում եք տեսնել։ Մենք կպատասխանենք շուտով՝ գնով և մանրամասներով։",
     "book.s1": "Լրացրեք ձևը", "book.s2": "Ուղարկեք WhatsApp-ով, Telegram-ով կամ Viber-ով", "book.s3": "Ստացեք հաստատում և ճամփա ընկեք",
-    "form.name": "Անուն", "form.phone": "Հեռախոս", "form.route": "Երթուղի", "form.customOpt": "Իմ սեփական երթուղին",
+    "form.name": "Անուն", "form.phone": "Հեռախոս", "form.route": "Երթուղի", "form.map": "Երթուղին քարտեզի վրա", "form.customOpt": "Իմ սեփական երթուղին",
     "form.custom": "Որտե՞ղ եք ուզում գնալ", "form.customPh": "Օրինակ՝ Ամբերդ, Արագած, Սաղմոսավանք",
     "form.date": "Ամսաթիվ", "form.people": "Մարդկանց քանակ", "form.class": "Մեքենայի դաս", "form.guide": "Գիդի լեզուն", "form.note": "Մեկնաբանություն",
     "form.error": "Խնդրում ենք լրացնել անունը, հեռախոսը և ամսաթիվը։",
@@ -157,7 +165,7 @@ const T = {
     "book.title": "Book a tour or suggest your own",
     "book.lead": "Pick a tour or list the places you want to see. We will reply soon with the price and details.",
     "book.s1": "Fill in the form", "book.s2": "Send it via WhatsApp, Telegram or Viber", "book.s3": "Get confirmation and hit the road",
-    "form.name": "Name", "form.phone": "Phone", "form.route": "Route", "form.customOpt": "My own route",
+    "form.name": "Name", "form.phone": "Phone", "form.route": "Route", "form.map": "Route on the map", "form.customOpt": "My own route",
     "form.custom": "Where would you like to go?", "form.customPh": "E.g. Amberd, Aragats, Saghmosavank",
     "form.date": "Date", "form.people": "Number of people", "form.class": "Car class", "form.guide": "Guide language", "form.note": "Comment",
     "form.error": "Please fill in your name, phone and date.",
@@ -199,7 +207,7 @@ const T = {
     "book.title": "Забронируйте тур или предложите свой",
     "book.lead": "Выберите тур или напишите места, которые хотите увидеть. Мы скоро ответим с ценой и деталями.",
     "book.s1": "Заполните форму", "book.s2": "Отправьте через WhatsApp, Telegram или Viber", "book.s3": "Получите подтверждение — и в путь",
-    "form.name": "Имя", "form.phone": "Телефон", "form.route": "Маршрут", "form.customOpt": "Свой маршрут",
+    "form.name": "Имя", "form.phone": "Телефон", "form.route": "Маршрут", "form.map": "Маршрут на карте", "form.customOpt": "Свой маршрут",
     "form.custom": "Куда бы вы хотели поехать?", "form.customPh": "Например: Амберд, Арагац, Сагмосаванк",
     "form.date": "Дата", "form.people": "Количество человек", "form.class": "Класс автомобиля", "form.guide": "Язык гида", "form.note": "Комментарий",
     "form.error": "Пожалуйста, укажите имя, телефон и дату.",
@@ -365,7 +373,18 @@ function toast(text) {
 const form = $("#bookForm");
 const routeSel = $("#f-route");
 const customField = $("#customField");
-const syncCustom = form ? () => { customField.hidden = routeSel.value !== "custom"; } : null;
+const routeMap = $("#routeMap");
+const syncCustom = form ? () => {
+  customField.hidden = routeSel.value !== "custom";
+  // Yandex map widget draws the driving route: Republic Square → each stop
+  const r = ROUTES.find((x) => x.id === routeSel.value);
+  routeMap.hidden = !r;
+  if (!r) return;
+  const rtext = [START, ...r.stops].map(([la, lo]) => `${la},${lo}`).join("~");
+  const src = `https://yandex.com/map-widget/v1/?rtext=${rtext}&rtt=auto&lang=${lang === "ru" ? "ru_RU" : "en_US"}`;
+  const frame = $("iframe", routeMap);
+  if (frame.src !== src) frame.src = src;
+} : null;
 
 if (form) {
   routeSel.addEventListener("change", syncCustom);

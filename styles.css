@@ -354,6 +354,9 @@ ul, ol { margin: 0; padding: 0; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--red); background: #fff; }
 .field .is-invalid { border-color: var(--red); background: #FCEDEE; }
 .field textarea { resize: vertical; }
+.route-map__label { font-size: 14px; font-weight: 600; color: var(--muted); }
+.route-map iframe { display: block; width: 100%; height: 320px; border: 1px solid var(--line); border-radius: 8px; background: var(--cream); }
+@media (min-width: 600px) { .route-map iframe { height: 360px; } }
 .segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .segmented label { position: relative; cursor: pointer; }
 .segmented input { position: absolute; opacity: 0; }
