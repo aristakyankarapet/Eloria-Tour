@@ -32,7 +32,7 @@ const ROUTES = [
       { src: "assets/img/symphony.jpg", name: { hy: "Քարերի սիմֆոնիա", en: "Symphony of Stones", ru: "Симфония камней" } },
       { src: "assets/img/geghard.jpg", name: { hy: "Գեղարդ", en: "Geghard", ru: "Гегард" } },
     ],
-    title: { hy: "Գառնի – Գեղարդ", en: "Garni – Geghard", ru: "Гарни – Гегард" },
+    title: { hy: "Գառնի – Քարերի սիմֆոնիա – Գեղարդ", en: "Garni – Symphony of Stones – Geghard", ru: "Гарни – Симфония камней – Гегард" },
     time: { hy: "≈ 5 ժամ", en: "≈ 5 hours", ru: "≈ 5 часов" },
     text: {
       hy: "Հեթանոսական տաճարը կիրճի եզրին, «Քարերի սիմֆոնիան» և ժայռի մեջ փորված Գեղարդավանքը՝ ՅՈՒՆԵՍԿՕ-ի ժառանգություն։",
@@ -376,12 +376,17 @@ const customField = $("#customField");
 const routeMap = $("#routeMap");
 const syncCustom = form ? () => {
   customField.hidden = routeSel.value !== "custom";
-  // Yandex map widget draws the driving route: Republic Square → each stop
+  // Yandex map widget with a marker on Republic Square and on each stop, zoomed to fit them all
   const r = ROUTES.find((x) => x.id === routeSel.value);
   routeMap.hidden = !r;
   if (!r) return;
-  const rtext = [START, ...r.stops].map(([la, lo]) => `${la},${lo}`).join("~");
-  const src = `https://yandex.com/map-widget/v1/?rtext=${rtext}&rtt=auto&lang=${lang === "ru" ? "ru_RU" : "en_US"}`;
+  const pts = [START, ...r.stops];
+  const lats = pts.map((p) => p[0]);
+  const lons = pts.map((p) => p[1]);
+  const mid = (a) => ((Math.min(...a) + Math.max(...a)) / 2).toFixed(4);
+  const span = (a) => ((Math.max(...a) - Math.min(...a)) * 1.4).toFixed(4);
+  const pt = pts.map(([la, lo]) => `${lo},${la}`).join("~");
+  const src = `https://yandex.com/map-widget/v1/?ll=${mid(lons)},${mid(lats)}&spn=${span(lons)},${span(lats)}&pt=${pt}&lang=${lang === "ru" ? "ru_RU" : "en_US"}`;
   const frame = $("iframe", routeMap);
   if (frame.src !== src) frame.src = src;
 } : null;
