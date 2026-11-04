@@ -247,14 +247,17 @@ function renderCars() {
   const list = POPULAR.map((r) => `<li><span>${t("cars.from")} – ${r.to[lang]}</span><span class="car__km">${r.km} ${t("cars.km")}</span></li>`).join("");
   grid.innerHTML = CARS.map((c) => `
     <article class="class-card car reveal">
-      <div class="car__head">
-        <h3>${c.name}</h3>
-        <span class="badge">${t("cars.seats")}: ${c.seats}</span>
+      <div class="car__media"><img src="assets/cars/${c.id}.svg" alt="${c.name}" width="240" height="112" loading="lazy"></div>
+      <div class="car__body">
+        <div class="car__head">
+          <h3>${c.name}</h3>
+          <span class="badge">${t("cars.seats")}: ${c.seats}</span>
+        </div>
+        <h4 class="car__label">${t("cars.popular")}</h4>
+        <ul class="car__routes">${list}</ul>
+        <p class="price">${t("price")}</p>
+        <a class="btn btn--primary" href="booking.html?class=${c.id}">${t("classes.choose")}</a>
       </div>
-      <h4 class="car__label">${t("cars.popular")}</h4>
-      <ul class="car__routes">${list}</ul>
-      <p class="price">${t("price")}</p>
-      <a class="btn btn--primary" href="booking.html?class=${c.id}">${t("classes.choose")}</a>
     </article>`).join("");
   observeReveal();
 }

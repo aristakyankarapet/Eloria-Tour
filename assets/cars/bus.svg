@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 112">
+<ellipse cx="120" cy="104" rx="112" ry="4" fill="#2B1A14" opacity=".12"/>
+<path d="M8 90V24Q8 14 18 14H222Q232 14 232 24V90Z" fill="#8B1E2D"/>
+<path d="M18 24H50V52H18Z" fill="#F3E7D3"/><path d="M54 24H86V52H54Z" fill="#F3E7D3"/><path d="M90 24H122V52H90Z" fill="#F3E7D3"/><path d="M126 24H158V52H126Z" fill="#F3E7D3"/><path d="M162 24H194V52H162Z" fill="#F3E7D3"/><path d="M200 24H214V84H200Z" fill="#F3E7D3"/><path d="M218 24H226V60H218Z" fill="#F3E7D3"/>
+<rect x="14" y="64" width="180" height="3" rx="1.5" fill="#B7832F"/>
+<rect x="222" y="72" width="8" height="5" rx="2" fill="#E8A33D"/>
+<rect x="8" y="72" width="5" height="5" rx="2" fill="#E8A33D"/>
+<circle cx="50" cy="90" r="14" fill="#2B1A14" stroke="#F3E7D3" stroke-width="4"/><circle cx="50" cy="90" r="5" fill="#E8A33D"/><circle cx="180" cy="90" r="14" fill="#2B1A14" stroke="#F3E7D3" stroke-width="4"/><circle cx="180" cy="90" r="5" fill="#E8A33D"/>
+</svg>

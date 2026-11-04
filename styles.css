@@ -322,6 +322,18 @@ ul, ol { margin: 0; padding: 0; }
 .class-card .btn { align-self: flex-start; }
 .cars__grid { max-width: 880px; }
 @media (min-width: 760px) { .cars__grid { grid-template-columns: 1fr; } }
+.car__media { display: grid; place-items: center; background: var(--sand); border-radius: 8px; padding: 24px 16px; }
+.car__media img { display: block; width: 100%; max-width: 280px; height: auto; }
+.car__body { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.car__body .btn { align-self: flex-start; }
+@media (min-width: 760px) {
+  .car { display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start; }
+  .car__routes { grid-template-columns: 1fr; }
+}
+@media (min-width: 960px) {
+  .cars__grid { max-width: 1040px; }
+  .car__routes { grid-template-columns: 1fr 1fr; }
+}
 .car__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .car .badge { position: static; }
 .car__label { font: 600 14px/1.5 var(--sans); color: var(--muted); }
