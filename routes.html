@@ -6,7 +6,7 @@
   fetch("version.txt", { cache: "no-store" }).then((r) => r.text()).then((v) => {
     v = v.trim();
     const u = new URL(location.href);
-    if (v && v !== "18" && u.searchParams.get("v") !== v) { u.searchParams.set("v", v); location.replace(u); }
+    if (v && v !== "19" && u.searchParams.get("v") !== v) { u.searchParams.set("v", v); location.replace(u); }
   }).catch(() => {});
 </script>
 <head>
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif+Armenian:wght@600&family=Noto+Serif:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body data-page="routes">
 
@@ -64,9 +64,11 @@
   <section class="page-hero">
     <img class="page-hero__img page-hero__img--upper" src="assets/img/haghartsin.jpg" alt="" fetchpriority="high">
     <div class="container page-hero__content">
-      <div class="ornament" aria-hidden="true"><img src="assets/grapes.svg" alt="" width="40" height="45"><img src="assets/pomegranate.svg" alt="" width="56" height="63"><img class="flip" src="assets/grapes.svg" alt="" width="40" height="45"></div>
-      <h1 data-i18n="nav.routes">Երթուղիներ</h1>
-      <p data-i18n="routes.lead">Հինգ ճանապարհ, որոնք բացում են Հայաստանի հոգին՝ վանքերից մինչև լեռնային լճեր։</p>
+      <div class="glass">
+        <div class="ornament" aria-hidden="true"><img src="assets/grapes.svg" alt="" width="40" height="45"><img src="assets/pomegranate.svg" alt="" width="56" height="63"><img class="flip" src="assets/grapes.svg" alt="" width="40" height="45"></div>
+        <h1 data-i18n="nav.routes">Երթուղիներ</h1>
+        <p data-i18n="routes.lead">Հինգ ճանապարհ, որոնք բացում են Հայաստանի հոգին՝ վանքերից մինչև լեռնային լճեր։</p>
+      </div>
     </div>
   </section>
 
@@ -131,6 +133,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=18"></script>
+<script src="script.js?v=19"></script>
 </body>
 </html>

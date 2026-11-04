@@ -147,8 +147,8 @@ ul, ol { margin: 0; padding: 0; }
 }
 @media (min-width: 768px) {
   .hero::after { background: linear-gradient(90deg, rgba(251, 245, 234, .92) 0%, rgba(251, 245, 234, .7) 18%, rgba(251, 245, 234, 0) 30%); }
-  .hero__panel {
-    max-width: 640px; padding: 32px; border-radius: 16px;
+  .glass {
+    max-width: 480px; padding: 24px; border-radius: 16px;
     background: rgba(251, 245, 234, .78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     box-shadow: var(--shadow);
   }
@@ -159,8 +159,10 @@ ul, ol { margin: 0; padding: 0; }
 .hero__lead { font-size: 16px; max-width: 56ch; margin-top: 16px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 @media (min-width: 768px) {
-  .hero h1 { font-size: 48px; }
-  .hero__lead { font-size: 20px; }
+  .hero h1 { font-size: 32px; }
+  .hero__lead { font-size: 16px; }
+  .hero .eyebrow { margin-bottom: 8px; }
+  .hero__actions { margin-top: 24px; }
   .hero__content { padding-bottom: 96px; }
 }
 @keyframes heroZoom { from { transform: scale(1.08); } to { transform: scale(1); } }
@@ -179,11 +181,11 @@ ul, ol { margin: 0; padding: 0; }
 .page-hero h1 { font-size: 32px; }
 .page-hero p { max-width: 56ch; margin-top: 12px; }
 @media (min-width: 768px) {
-  .page-hero::after { background: linear-gradient(90deg, rgba(251, 245, 234, .96) 0%, rgba(251, 245, 234, .85) 40%, rgba(251, 245, 234, 0) 75%); }
+  .page-hero::after { background: linear-gradient(90deg, rgba(251, 245, 234, .92) 0%, rgba(251, 245, 234, .7) 18%, rgba(251, 245, 234, 0) 30%); }
   .page-hero__content { padding-top: 96px; padding-bottom: 96px; }
-  .page-hero__content > * { max-width: 520px; }
-  .page-hero h1 { font-size: 40px; }
-  .page-hero p { font-size: 20px; }
+  .page-hero .glass { max-width: 440px; }
+  .page-hero .ornament img:nth-child(1), .page-hero .ornament img:nth-child(3) { width: 32px; }
+  .page-hero .ornament img:nth-child(2) { width: 44px; }
 }
 /* Whole photo visible: photo on top on phones, on the right on wider screens */
 .page-hero--split::after { display: none; }
