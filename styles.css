@@ -89,14 +89,14 @@ ul, ol { margin: 0; padding: 0; }
 .pick__chev { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform .3s var(--ease); }
 .pick__btn[aria-expanded="true"] .pick__chev { transform: rotate(180deg); }
 .pick__menu {
-  position: absolute; top: calc(100% + 8px); left: 50%; z-index: 30; min-width: 100%;
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 30; min-width: 100%;
   display: grid; gap: 4px; padding: 4px;
   background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
-  opacity: 0; transform: translate(-50%, -8px); pointer-events: none; visibility: hidden;
+  opacity: 0; transform: translateY(-8px); pointer-events: none; visibility: hidden;
   transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s .3s;
 }
 .pick__btn[aria-expanded="true"] + .pick__menu {
-  opacity: 1; transform: translate(-50%, 0); pointer-events: auto; visibility: visible;
+  opacity: 1; transform: none; pointer-events: auto; visibility: visible;
   transition: opacity .3s var(--ease), transform .3s var(--ease);
 }
 .pick__menu button {
@@ -107,6 +107,8 @@ ul, ol { margin: 0; padding: 0; }
 .pick__cur { display: inline-flex; align-items: center; gap: 8px; }
 .flag { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(43, 26, 20, .12); flex: none; }
 .pick__menu button:has(.flag) { display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap; }
+.pick__label { font-weight: 400; }
+.pick__label strong { font-weight: 600; margin-right: 4px; }
 .pick__menu button[aria-pressed="true"] .flag { box-shadow: 0 0 0 1px rgba(251, 245, 234, .6); }
 .pick__menu button:hover { background: var(--sand); color: var(--ink); }
 .pick__menu button[aria-pressed="true"] { background: var(--red); color: var(--cream); }

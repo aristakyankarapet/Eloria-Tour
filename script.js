@@ -153,7 +153,7 @@ const T = {
     "classes.title": "Ընտրեք ձեր հարմարավետությունը",
     "classes.lead": "Հինգ դասի մեքենաներ՝ սեդանից մինչև ավտոբուս։ Յուրաքանչյուրի համար՝ ամենահաճախ ընտրվող ուղղությունները։",
     "classes.choose": "Ընտրել",
-    "pick.lang": "Լեզու", "pick.cur": "Արժույթ", "cars.seats": "Ուղևոր", "cars.bags": "Ճամպրուկ", "cars.prev": "Նախորդ ուղղությունները", "cars.next": "Հաջորդ ուղղությունները", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
+    "pick.lang": "Լեզու", "pick.cur": "Արժույթ", "cur.AMD": "Հայկական դրամ", "cur.USD": "ԱՄՆ դոլար", "cur.RUB": "Ռուսական ռուբլի", "cur.EUR": "Եվրո", "cur.GEL": "Վրացական լարի", "cars.seats": "Ուղևոր", "cars.bags": "Ճամպրուկ", "cars.prev": "Նախորդ ուղղությունները", "cars.next": "Հաջորդ ուղղությունները", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
     "price": "Գինը՝ շուտով",
     "book.title": "Ամրագրեք կամ առաջարկեք ձեր երթուղին",
     "book.lead": "Ընտրեք տուրը կամ գրեք այն վայրերը, որոնք ցանկանում եք տեսնել։ Մենք կպատասխանենք շուտով՝ գնով և մանրամասներով։",
@@ -192,7 +192,7 @@ const T = {
     "classes.title": "Choose your comfort",
     "classes.lead": "Five classes of vehicles, from sedans to buses. For each one, the most requested directions.",
     "classes.choose": "Choose",
-    "pick.lang": "Language", "pick.cur": "Currency", "cars.seats": "Passengers", "cars.bags": "Suitcases", "cars.prev": "Previous directions", "cars.next": "Next directions", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
+    "pick.lang": "Language", "pick.cur": "Currency", "cur.AMD": "Armenian dram", "cur.USD": "US dollar", "cur.RUB": "Russian ruble", "cur.EUR": "Euro", "cur.GEL": "Georgian lari", "cars.seats": "Passengers", "cars.bags": "Suitcases", "cars.prev": "Previous directions", "cars.next": "Next directions", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
     "price": "Prices coming soon",
     "book.title": "Book a tour or suggest your own",
     "book.lead": "Pick a tour or list the places you want to see. We will reply soon with the price and details.",
@@ -231,7 +231,7 @@ const T = {
     "classes.title": "Выберите свой комфорт",
     "classes.lead": "Пять классов автомобилей — от седана до автобуса. Для каждого — самые популярные направления.",
     "classes.choose": "Выбрать",
-    "pick.lang": "Язык", "pick.cur": "Валюта", "cars.seats": "Пассажиров", "cars.bags": "Чемоданов", "cars.prev": "Предыдущие направления", "cars.next": "Следующие направления", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
+    "pick.lang": "Язык", "pick.cur": "Валюта", "cur.AMD": "Армянский драм", "cur.USD": "Доллар США", "cur.RUB": "Российский рубль", "cur.EUR": "Евро", "cur.GEL": "Грузинский лари", "cars.seats": "Пассажиров", "cars.bags": "Чемоданов", "cars.prev": "Предыдущие направления", "cars.next": "Следующие направления", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
     "price": "Цены скоро",
     "book.title": "Забронируйте тур или предложите свой",
     "book.lead": "Выберите тур или напишите места, которые хотите увидеть. Мы скоро ответим с ценой и деталями.",
@@ -467,7 +467,7 @@ $$("[data-lang]").forEach((b) => b.addEventListener("click", () => { applyLang(b
 function applyCurrency(next) {
   currency = next;
   localStorage.setItem("eloria-cur", currency);
-  $("#curCur").textContent = currency;
+  $("#curCur").innerHTML = `${$(`[data-cur="${currency}"] .flag`).outerHTML}<span class="pick__code">${currency}</span>`;
   $$("[data-cur]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cur === currency)));
   renderCars();
 }
