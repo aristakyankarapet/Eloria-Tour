@@ -146,7 +146,12 @@ ul, ol { margin: 0; padding: 0; }
   background: linear-gradient(180deg, rgba(251, 245, 234, .2) 0%, rgba(251, 245, 234, .8) 45%, rgba(251, 245, 234, .96) 100%);
 }
 @media (min-width: 768px) {
-  .hero::after { background: linear-gradient(90deg, rgba(251, 245, 234, .96) 0%, rgba(251, 245, 234, .85) 45%, rgba(251, 245, 234, 0) 80%); }
+  .hero::after { background: linear-gradient(90deg, rgba(251, 245, 234, .92) 0%, rgba(251, 245, 234, .7) 18%, rgba(251, 245, 234, 0) 30%); }
+  .hero__panel {
+    max-width: 640px; padding: 32px; border-radius: 16px;
+    background: rgba(251, 245, 234, .78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
+  }
 }
 .hero__content { position: relative; z-index: 1; padding-top: 128px; padding-bottom: 64px; }
 .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
