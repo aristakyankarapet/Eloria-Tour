@@ -377,7 +377,8 @@ function applyLang(next) {
   $$("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });
   $$("[data-i18n-title]").forEach((el) => { el.title = t(el.dataset.i18nTitle); });
   $$("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-  $("#langCur").textContent = $(`[data-lang="${lang}"]`).textContent;
+  const cur = $(`[data-lang="${lang}"]`);
+  $("#langCur").innerHTML = `${$(".flag", cur).outerHTML}<span class="pick__code">${cur.dataset.code}</span>`;
   renderRoutes();
   renderCars();
   if (typeof syncCustom === "function") syncCustom();

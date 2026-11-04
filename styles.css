@@ -104,6 +104,10 @@ ul, ol { margin: 0; padding: 0; }
   font: 600 14px/1 var(--sans); color: var(--muted); cursor: pointer; text-align: center;
   transition: background-color .3s var(--ease), color .3s var(--ease);
 }
+.pick__cur { display: inline-flex; align-items: center; gap: 8px; }
+.flag { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(43, 26, 20, .12); flex: none; }
+.pick__menu button:has(.flag) { display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap; }
+.pick__menu button[aria-pressed="true"] .flag { box-shadow: 0 0 0 1px rgba(251, 245, 234, .6); }
 .pick__menu button:hover { background: var(--sand); color: var(--ink); }
 .pick__menu button[aria-pressed="true"] { background: var(--red); color: var(--cream); }
 .burger { display: none; }
@@ -129,7 +133,8 @@ ul, ol { margin: 0; padding: 0; }
   .nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
   .nav a::after { display: none; }
 }
-@media (max-width: 400px) { .logo span { font-size: 16px; } .header__row { gap: 8px; } .picks { gap: 4px; } .pick__btn { padding: 0 8px 0 12px; } }
+@media (max-width: 480px) { .pick__code { display: none; } }
+@media (max-width: 400px) { .logo span { font-size: 16px; white-space: nowrap; } .header__row { gap: 8px; } .picks { gap: 4px; } .pick__btn { padding: 0 8px 0 12px; } }
 
 /* Hero */
 .hero { position: relative; min-height: min(88vh, 760px); display: flex; align-items: flex-end; color: var(--ink); overflow: hidden; }
