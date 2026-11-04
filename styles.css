@@ -134,6 +134,7 @@ ul, ol { margin: 0; padding: 0; }
 /* Inner page banner */
 .page-hero { position: relative; color: var(--cream); overflow: hidden; text-align: center; }
 .page-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: heroZoom 18s var(--ease) both; }
+.page-hero__img--low { object-position: center 68%; }
 .page-hero::after { content: ""; position: absolute; inset: 0; background: rgba(43, 26, 20, .66); }
 .page-hero__content { position: relative; z-index: 1; padding-top: 64px; padding-bottom: 64px; }
 .page-hero h1 { font-size: 32px; }
@@ -320,25 +321,17 @@ ul, ol { margin: 0; padding: 0; }
 .class-card--comfort .checks li::before { background: var(--apricot); }
 .price { font: 600 20px/1.3 var(--serif); color: var(--red); margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--line); }
 .class-card .btn { align-self: flex-start; }
-.cars__grid { max-width: 880px; }
-@media (min-width: 760px) { .cars__grid { grid-template-columns: 1fr; } }
-.car__media { display: grid; place-items: center; background: var(--sand); border-radius: 8px; padding: 24px 16px; }
-.car__media img { display: block; width: 100%; max-width: 280px; height: auto; }
-.car__body { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.cars__grid { max-width: none; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+@media (min-width: 760px) { .cars__grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
+.car { padding: 24px; }
+.car__media { display: grid; place-items: center; background: var(--sand); border-radius: 8px; padding: 16px; }
+.car__media img { display: block; width: 100%; max-width: 240px; height: auto; }
+.car__body { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .car__body .btn { align-self: flex-start; }
-@media (min-width: 760px) {
-  .car { display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start; }
-  .car__routes { grid-template-columns: 1fr; }
-}
-@media (min-width: 960px) {
-  .cars__grid { max-width: 1040px; }
-  .car__routes { grid-template-columns: 1fr 1fr; }
-}
 .car__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .car .badge { position: static; }
 .car__label { font: 600 14px/1.5 var(--sans); color: var(--muted); }
-.car__routes { list-style: none; display: grid; gap: 0 32px; }
-@media (min-width: 640px) { .car__routes { grid-template-columns: 1fr 1fr; } }
+.car__routes { list-style: none; display: grid; }
 .car__routes li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .car__km { color: var(--muted); white-space: nowrap; }
 
