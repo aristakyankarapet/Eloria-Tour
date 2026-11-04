@@ -77,17 +77,39 @@ ul, ol { margin: 0; padding: 0; }
   background: var(--apricot); transform: scaleX(0); transition: transform .3s var(--ease);
 }
 .nav a:hover::after { transform: scaleX(1); }
-.lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; }
-.lang button {
-  min-width: 44px; min-height: 36px; padding: 0 8px; border: 0; border-radius: 999px;
-  background: none; font: 600 14px/1 var(--sans); color: var(--muted); cursor: pointer;
+.picks { display: flex; gap: 8px; }
+.pick { position: relative; }
+.pick__btn {
+  display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px 0 16px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--cream);
+  font: 600 14px/1 var(--sans); color: var(--ink); cursor: pointer;
+  transition: border-color .3s var(--ease);
+}
+.pick__btn:hover, .pick__btn[aria-expanded="true"] { border-color: var(--red); }
+.pick__chev { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform .3s var(--ease); }
+.pick__btn[aria-expanded="true"] .pick__chev { transform: rotate(180deg); }
+.pick__menu {
+  position: absolute; top: calc(100% + 8px); left: 50%; z-index: 30; min-width: 100%;
+  display: grid; gap: 4px; padding: 4px;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+  opacity: 0; transform: translate(-50%, -8px); pointer-events: none; visibility: hidden;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s .3s;
+}
+.pick__btn[aria-expanded="true"] + .pick__menu {
+  opacity: 1; transform: translate(-50%, 0); pointer-events: auto; visibility: visible;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.pick__menu button {
+  min-height: 44px; padding: 0 16px; border: 0; border-radius: 8px; background: none;
+  font: 600 14px/1 var(--sans); color: var(--muted); cursor: pointer; text-align: center;
   transition: background-color .3s var(--ease), color .3s var(--ease);
 }
-.lang button[aria-pressed="true"] { background: var(--red); color: var(--cream); }
+.pick__menu button:hover { background: var(--sand); color: var(--ink); }
+.pick__menu button[aria-pressed="true"] { background: var(--red); color: var(--cream); }
 .burger { display: none; }
 
 @media (max-width: 860px) {
-  .lang { margin-left: auto; }
+  .picks { margin-left: auto; }
   .burger {
     display: grid; gap: 4px; align-content: center; justify-items: center;
     width: 44px; height: 44px; border: 0; background: none; cursor: pointer;
@@ -107,7 +129,7 @@ ul, ol { margin: 0; padding: 0; }
   .nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
   .nav a::after { display: none; }
 }
-@media (max-width: 400px) { .logo span { font-size: 16px; } .header__row { gap: 8px; } }
+@media (max-width: 400px) { .logo span { font-size: 16px; } .header__row { gap: 8px; } .picks { gap: 4px; } .pick__btn { padding: 0 8px 0 12px; } }
 
 /* Hero */
 .hero { position: relative; min-height: min(88vh, 760px); display: flex; align-items: flex-end; color: var(--ink); overflow: hidden; }

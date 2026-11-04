@@ -98,18 +98,34 @@ const CARS = [
   { id: "bus", name: "Bus", seats: 50, bags: 40 },
 ];
 
+// Prices in AMD per car and direction, e.g. "comfort-sedan": { sevan: 15000 }.
+// Leave a direction out to show "price coming soon". Other currencies are converted automatically.
+const PRICES = {
+  "comfort-sedan": {},
+  "business-sedan": {},
+  minivan: {},
+  minibus: {},
+  bus: {},
+};
+
+const CURRENCIES = ["AMD", "USD", "RUB", "EUR", "GEL"];
+// Fallback rates (units per 1 AMD); replaced by today's rates when they load
+let rates = { AMD: 1, USD: 0.002776, RUB: 0.226193, EUR: 0.002482, GEL: 0.007205 };
+let currency = localStorage.getItem("eloria-cur") || "AMD";
+if (!CURRENCIES.includes(currency)) currency = "AMD";
+
 // Most requested directions from Yerevan, with approximate road distance
 const POPULAR = [
-  { km: 12, to: { hy: "Զվարթնոց օդանավակայան", en: "Zvartnots Airport", ru: "Аэропорт Звартноц" } },
-  { km: 20, to: { hy: "Էջմիածին", en: "Etchmiadzin", ru: "Эчмиадзин" } },
-  { km: 30, to: { hy: "Գառնի", en: "Garni", ru: "Гарни" } },
-  { km: 60, to: { hy: "Ծաղկաձոր", en: "Tsaghkadzor", ru: "Цахкадзор" } },
-  { km: 65, to: { hy: "Սևան", en: "Sevan", ru: "Севан" } },
-  { km: 100, to: { hy: "Դիլիջան", en: "Dilijan", ru: "Дилижан" } },
-  { km: 120, to: { hy: "Գյումրի", en: "Gyumri", ru: "Гюмри" } },
-  { km: 175, to: { hy: "Ջերմուկ", en: "Jermuk", ru: "Джермук" } },
-  { km: 240, to: { hy: "Գորիս", en: "Goris", ru: "Горис" } },
-  { km: 280, to: { hy: "Թբիլիսի", en: "Tbilisi", ru: "Тбилиси" } },
+  { id: "airport", km: 12, to: { hy: "Զվարթնոց օդանավակայան", en: "Zvartnots Airport", ru: "Аэропорт Звартноц" } },
+  { id: "etchmiadzin", km: 20, to: { hy: "Էջմիածին", en: "Etchmiadzin", ru: "Эчмиадзин" } },
+  { id: "garni", km: 30, to: { hy: "Գառնի", en: "Garni", ru: "Гарни" } },
+  { id: "tsaghkadzor", km: 60, to: { hy: "Ծաղկաձոր", en: "Tsaghkadzor", ru: "Цахкадзор" } },
+  { id: "sevan", km: 65, to: { hy: "Սևան", en: "Sevan", ru: "Севан" } },
+  { id: "dilijan", km: 100, to: { hy: "Դիլիջան", en: "Dilijan", ru: "Дилижан" } },
+  { id: "gyumri", km: 120, to: { hy: "Գյումրի", en: "Gyumri", ru: "Гюмри" } },
+  { id: "jermuk", km: 175, to: { hy: "Ջերմուկ", en: "Jermuk", ru: "Джермук" } },
+  { id: "goris", km: 240, to: { hy: "Գորիս", en: "Goris", ru: "Горис" } },
+  { id: "tbilisi", km: 280, to: { hy: "Թբիլիսի", en: "Tbilisi", ru: "Тбилиси" } },
 ];
 
 const T = {
@@ -137,7 +153,7 @@ const T = {
     "classes.title": "Ընտրեք ձեր հարմարավետությունը",
     "classes.lead": "Հինգ դասի մեքենաներ՝ սեդանից մինչև ավտոբուս։ Յուրաքանչյուրի համար՝ ամենահաճախ ընտրվող ուղղությունները։",
     "classes.choose": "Ընտրել",
-    "cars.seats": "Ուղևոր", "cars.bags": "Ճամպրուկ", "cars.prev": "Նախորդ ուղղությունները", "cars.next": "Հաջորդ ուղղությունները", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
+    "pick.lang": "Լեզու", "pick.cur": "Արժույթ", "cars.seats": "Ուղևոր", "cars.bags": "Ճամպրուկ", "cars.prev": "Նախորդ ուղղությունները", "cars.next": "Հաջորդ ուղղությունները", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
     "price": "Գինը՝ շուտով",
     "book.title": "Ամրագրեք կամ առաջարկեք ձեր երթուղին",
     "book.lead": "Ընտրեք տուրը կամ գրեք այն վայրերը, որոնք ցանկանում եք տեսնել։ Մենք կպատասխանենք շուտով՝ գնով և մանրամասներով։",
@@ -176,7 +192,7 @@ const T = {
     "classes.title": "Choose your comfort",
     "classes.lead": "Five classes of vehicles, from sedans to buses. For each one, the most requested directions.",
     "classes.choose": "Choose",
-    "cars.seats": "Passengers", "cars.bags": "Suitcases", "cars.prev": "Previous directions", "cars.next": "Next directions", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
+    "pick.lang": "Language", "pick.cur": "Currency", "cars.seats": "Passengers", "cars.bags": "Suitcases", "cars.prev": "Previous directions", "cars.next": "Next directions", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
     "price": "Prices coming soon",
     "book.title": "Book a tour or suggest your own",
     "book.lead": "Pick a tour or list the places you want to see. We will reply soon with the price and details.",
@@ -215,7 +231,7 @@ const T = {
     "classes.title": "Выберите свой комфорт",
     "classes.lead": "Пять классов автомобилей — от седана до автобуса. Для каждого — самые популярные направления.",
     "classes.choose": "Выбрать",
-    "cars.seats": "Пассажиров", "cars.bags": "Чемоданов", "cars.prev": "Предыдущие направления", "cars.next": "Следующие направления", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
+    "pick.lang": "Язык", "pick.cur": "Валюта", "cars.seats": "Пассажиров", "cars.bags": "Чемоданов", "cars.prev": "Предыдущие направления", "cars.next": "Следующие направления", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
     "price": "Цены скоро",
     "book.title": "Забронируйте тур или предложите свой",
     "book.lead": "Выберите тур или напишите места, которые хотите увидеть. Мы скоро ответим с ценой и деталями.",
@@ -244,6 +260,15 @@ const page = document.body.dataset.page || "home";
 const ICON_PAX = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></svg>`;
 const ICON_BAG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v3h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3zm2 2v1h2V5z"/></svg>`;
 
+function formatPrice(amd) {
+  const value = amd * rates[currency];
+  const locale = { hy: "hy-AM", en: "en-US", ru: "ru-RU" }[lang];
+  return new Intl.NumberFormat(locale, {
+    style: "currency", currency, currencyDisplay: currency === "AMD" ? "code" : "symbol",
+    maximumFractionDigits: currency === "AMD" || currency === "RUB" ? 0 : 2,
+  }).format(value);
+}
+
 function renderCars() {
   const grid = $("#carsGrid");
   if (!grid) return;
@@ -266,7 +291,7 @@ function renderCars() {
               <span class="car__from">${t("cars.from")} →</span>
               <strong>${r.to[lang]}</strong>
               <span class="car__km">${r.km} ${t("cars.km")}</span>
-              <span class="car__price">${t("price")}</span>
+              <span class="car__price">${PRICES[c.id]?.[r.id] ? formatPrice(PRICES[c.id][r.id]) : t("price")}</span>
             </a></li>`).join("")}
           </ul>
           <button class="car__arrow car__arrow--next" type="button" aria-label="${t("cars.next")}">›</button>
@@ -351,7 +376,8 @@ function applyLang(next) {
   $$("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
   $$("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });
   $$("[data-i18n-title]").forEach((el) => { el.title = t(el.dataset.i18nTitle); });
-  $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  $$("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  $("#langCur").textContent = $(`[data-lang="${lang}"]`).textContent;
   renderRoutes();
   renderCars();
   if (typeof syncCustom === "function") syncCustom();
@@ -425,7 +451,43 @@ burger.addEventListener("click", () => {
   nav.classList.toggle("is-open", open);
 });
 
-$$(".lang button").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.lang)));
+// Language and currency dropdowns
+function closePicks(except) {
+  $$(".pick__btn").forEach((b) => { if (b !== except) b.setAttribute("aria-expanded", "false"); });
+}
+$$(".pick__btn").forEach((b) => b.addEventListener("click", () => {
+  closePicks(b);
+  b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true"));
+}));
+document.addEventListener("click", (e) => { if (!e.target.closest(".pick")) closePicks(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePicks(); });
+$$("[data-lang]").forEach((b) => b.addEventListener("click", () => { applyLang(b.dataset.lang); closePicks(); }));
+
+function applyCurrency(next) {
+  currency = next;
+  localStorage.setItem("eloria-cur", currency);
+  $("#curCur").textContent = currency;
+  $$("[data-cur]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cur === currency)));
+  renderCars();
+}
+$$("[data-cur]").forEach((b) => b.addEventListener("click", () => { applyCurrency(b.dataset.cur); closePicks(); }));
+
+// Today's exchange rates, cached for 12 hours
+(async () => {
+  try {
+    const cached = JSON.parse(localStorage.getItem("eloria-rates") || "null");
+    if (cached && Date.now() - cached.at < 12 * 3600e3) { rates = { ...rates, ...cached.rates }; }
+    else {
+      const res = await fetch("https://open.er-api.com/v6/latest/AMD");
+      const data = await res.json();
+      if (data.result !== "success") return;
+      const fresh = Object.fromEntries(CURRENCIES.map((c) => [c, data.rates[c]]));
+      rates = { ...rates, ...fresh };
+      localStorage.setItem("eloria-rates", JSON.stringify({ at: Date.now(), rates: fresh }));
+    }
+    renderCars();
+  } catch { /* keep fallback rates */ }
+})();
 
 function toast(text) {
   const el = $("#toast");
@@ -516,3 +578,4 @@ if (form) {
 
 $("#year").textContent = new Date().getFullYear();
 applyLang(lang);
+applyCurrency(currency);

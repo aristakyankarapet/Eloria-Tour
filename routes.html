@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif+Armenian:wght@600&family=Noto+Serif:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body data-page="routes">
 
@@ -26,10 +26,25 @@
       <a href="booking.html" data-i18n="nav.book">Ամրագրում</a>
       <a href="contacts.html" data-i18n="nav.contacts">Կապ</a>
     </nav>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-lang="hy">ՀԱՅ</button>
-      <button type="button" data-lang="en">EN</button>
-      <button type="button" data-lang="ru">RU</button>
+    <div class="picks">
+      <div class="pick">
+        <button class="pick__btn" type="button" aria-expanded="false" aria-haspopup="true" data-i18n-aria="pick.lang" aria-label="Լեզու"><span class="pick__cur" id="langCur">ՀԱՅ</span><svg class="pick__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="pick__menu">
+          <button type="button" data-lang="hy">ՀԱՅ</button>
+          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="ru">RU</button>
+        </div>
+      </div>
+      <div class="pick">
+        <button class="pick__btn" type="button" aria-expanded="false" aria-haspopup="true" data-i18n-aria="pick.cur" aria-label="Արժույթ"><span class="pick__cur" id="curCur">AMD</span><svg class="pick__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="pick__menu">
+          <button type="button" data-cur="AMD">AMD</button>
+          <button type="button" data-cur="USD">USD</button>
+          <button type="button" data-cur="RUB">RUB</button>
+          <button type="button" data-cur="EUR">EUR</button>
+          <button type="button" data-cur="GEL">GEL</button>
+        </div>
+      </div>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" data-i18n-aria="nav.menu" aria-label="Մենյու">
       <span></span><span></span><span></span>
@@ -108,6 +123,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=11"></script>
+<script src="script.js?v=12"></script>
 </body>
 </html>
