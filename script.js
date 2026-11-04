@@ -91,11 +91,11 @@ const ROUTES = [
 ];
 
 const CARS = [
-  { id: "comfort-sedan", name: "Comfort sedan", seats: "1–3" },
-  { id: "business-sedan", name: "Business sedan", seats: "1–3" },
-  { id: "minivan", name: "Minivan", seats: "4–7" },
-  { id: "minibus", name: "Minibus", seats: "8–18" },
-  { id: "bus", name: "Bus", seats: "19–50" },
+  { id: "comfort-sedan", name: "Comfort sedan", seats: 3, bags: 2 },
+  { id: "business-sedan", name: "Business sedan", seats: 3, bags: 3 },
+  { id: "minivan", name: "Minivan", seats: 7, bags: 5 },
+  { id: "minibus", name: "Minibus", seats: 18, bags: 15 },
+  { id: "bus", name: "Bus", seats: 50, bags: 40 },
 ];
 
 // Most requested directions from Yerevan, with approximate road distance
@@ -137,7 +137,7 @@ const T = {
     "classes.title": "Ընտրեք ձեր հարմարավետությունը",
     "classes.lead": "Հինգ դասի մեքենաներ՝ սեդանից մինչև ավտոբուս։ Յուրաքանչյուրի համար՝ ամենահաճախ ընտրվող ուղղությունները։",
     "classes.choose": "Ընտրել",
-    "cars.seats": "Ուղևոր", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
+    "cars.seats": "Ուղևոր", "cars.bags": "Ճամպրուկ", "cars.prev": "Նախորդ ուղղությունները", "cars.next": "Հաջորդ ուղղությունները", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
     "price": "Գինը՝ շուտով",
     "book.title": "Ամրագրեք կամ առաջարկեք ձեր երթուղին",
     "book.lead": "Ընտրեք տուրը կամ գրեք այն վայրերը, որոնք ցանկանում եք տեսնել։ Մենք կպատասխանենք շուտով՝ գնով և մանրամասներով։",
@@ -176,7 +176,7 @@ const T = {
     "classes.title": "Choose your comfort",
     "classes.lead": "Five classes of vehicles, from sedans to buses. For each one, the most requested directions.",
     "classes.choose": "Choose",
-    "cars.seats": "Passengers", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
+    "cars.seats": "Passengers", "cars.bags": "Suitcases", "cars.prev": "Previous directions", "cars.next": "Next directions", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
     "price": "Prices coming soon",
     "book.title": "Book a tour or suggest your own",
     "book.lead": "Pick a tour or list the places you want to see. We will reply soon with the price and details.",
@@ -215,7 +215,7 @@ const T = {
     "classes.title": "Выберите свой комфорт",
     "classes.lead": "Пять классов автомобилей — от седана до автобуса. Для каждого — самые популярные направления.",
     "classes.choose": "Выбрать",
-    "cars.seats": "Пассажиров", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
+    "cars.seats": "Пассажиров", "cars.bags": "Чемоданов", "cars.prev": "Предыдущие направления", "cars.next": "Следующие направления", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
     "price": "Цены скоро",
     "book.title": "Забронируйте тур или предложите свой",
     "book.lead": "Выберите тур или напишите места, которые хотите увидеть. Мы скоро ответим с ценой и деталями.",
@@ -241,26 +241,57 @@ const t = (k) => T[lang][k] ?? k;
 
 const page = document.body.dataset.page || "home";
 
+const ICON_PAX = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></svg>`;
+const ICON_BAG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v3h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3zm2 2v1h2V5z"/></svg>`;
+
 function renderCars() {
   const grid = $("#carsGrid");
   if (!grid) return;
-  const list = POPULAR.map((r) => `<li><span>${t("cars.from")} – ${r.to[lang]}</span><span class="car__km">${r.km} ${t("cars.km")}</span></li>`).join("");
   grid.innerHTML = CARS.map((c) => `
-    <article class="class-card car reveal">
-      <div class="car__media"><img src="assets/cars/${c.id}.svg" alt="${c.name}" width="240" height="112" loading="lazy"></div>
-      <div class="car__body">
-        <div class="car__head">
-          <h3>${c.name}</h3>
-          <span class="badge">${t("cars.seats")}: ${c.seats}</span>
-        </div>
+    <article class="car reveal">
+      <div class="car__panel">
+        <h3>${c.name}</h3>
+        <p class="car__specs">
+          <span title="${t("cars.seats")}">${ICON_PAX}<span class="sr-only">${t("cars.seats")}</span> × ${c.seats}</span>
+          <span title="${t("cars.bags")}">${ICON_BAG}<span class="sr-only">${t("cars.bags")}</span> × ${c.bags}</span>
+        </p>
+        <img src="assets/cars/${c.id}.svg" alt="${c.name}" width="240" height="112" loading="lazy">
+      </div>
+      <div class="car__side">
         <h4 class="car__label">${t("cars.popular")}</h4>
-        <ul class="car__routes">${list}</ul>
-        <p class="price">${t("price")}</p>
+        <div class="car__scroller">
+          <button class="car__arrow car__arrow--prev" type="button" aria-label="${t("cars.prev")}" disabled>‹</button>
+          <ul class="car__routes">${POPULAR.map((r) => `
+            <li><a href="booking.html?class=${c.id}">
+              <span class="car__from">${t("cars.from")} →</span>
+              <strong>${r.to[lang]}</strong>
+              <span class="car__km">${r.km} ${t("cars.km")}</span>
+              <span class="car__price">${t("price")}</span>
+            </a></li>`).join("")}
+          </ul>
+          <button class="car__arrow car__arrow--next" type="button" aria-label="${t("cars.next")}">›</button>
+        </div>
         <a class="btn btn--primary" href="booking.html?class=${c.id}">${t("classes.choose")}</a>
       </div>
     </article>`).join("");
   observeReveal();
 }
+
+// Popular-direction strips on the cars page
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".car__arrow");
+  if (!btn) return;
+  const list = $(".car__routes", btn.parentElement);
+  const dir = btn.classList.contains("car__arrow--prev") ? -1 : 1;
+  list.scrollBy({ left: dir * list.clientWidth * 0.8, behavior: "smooth" });
+});
+document.addEventListener("scroll", (e) => {
+  const list = e.target;
+  if (!list.classList?.contains("car__routes")) return;
+  const box = list.parentElement;
+  $(".car__arrow--prev", box).disabled = list.scrollLeft < 8;
+  $(".car__arrow--next", box).disabled = list.scrollLeft + list.clientWidth > list.scrollWidth - 8;
+}, true);
 
 function renderRoutes() {
   const grid = $("#routesGrid");

@@ -238,14 +238,14 @@ ul, ol { margin: 0; padding: 0; }
   background: linear-gradient(180deg, transparent, rgba(43, 26, 20, .75));
   color: var(--cream); font-size: 14px; font-weight: 600;
 }
-.gallery__btn {
+.gallery__btn, .car__arrow {
   position: absolute; top: 50%; width: 44px; height: 44px; margin-top: -22px;
   display: grid; place-items: center; border: 0; border-radius: 50%;
   background: rgba(251, 245, 234, .9); color: var(--red); font: 600 24px/1 var(--serif); cursor: pointer;
   box-shadow: var(--shadow); transition: opacity .3s var(--ease), background-color .3s var(--ease);
 }
-.gallery__btn:hover { background: var(--cream); }
-.gallery__btn:disabled { opacity: 0; pointer-events: none; }
+.gallery__btn:hover, .car__arrow:hover { background: var(--cream); }
+.gallery__btn:disabled, .car__arrow:disabled { opacity: 0; pointer-events: none; }
 .gallery__btn--prev { left: 12px; }
 .gallery__btn--next { right: 12px; }
 .gallery__dots { position: absolute; right: 8px; bottom: 4px; display: flex; }
@@ -321,19 +321,53 @@ ul, ol { margin: 0; padding: 0; }
 .class-card--comfort .checks li::before { background: var(--apricot); }
 .price { font: 600 20px/1.3 var(--serif); color: var(--red); margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--line); }
 .class-card .btn { align-self: flex-start; }
-.cars__grid { max-width: none; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
-@media (min-width: 760px) { .cars__grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
-.car { padding: 24px; }
-.car__media { display: grid; place-items: center; background: var(--sand); border-radius: 8px; padding: 16px; }
-.car__media img { display: block; width: 100%; max-width: 240px; height: auto; }
-.car__body { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.car__body .btn { align-self: flex-start; }
-.car__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
-.car .badge { position: static; }
-.car__label { font: 600 14px/1.5 var(--sans); color: var(--muted); }
-.car__routes { list-style: none; display: grid; }
-.car__routes li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
-.car__km { color: var(--muted); white-space: nowrap; }
+.cars__grid { max-width: none; grid-template-columns: 1fr; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.car {
+  display: grid; overflow: hidden; border-radius: var(--radius);
+  background: var(--cream); color: var(--ink);
+}
+.car__panel {
+  position: relative; display: flex; flex-direction: column; gap: 8px; padding: 24px 24px 16px;
+  background: var(--sand); border-bottom: 4px solid var(--gold);
+}
+.car__panel h3 { font-size: 24px; }
+.car__specs { display: flex; gap: 24px; color: var(--muted); font-weight: 600; }
+.car__specs > span { display: inline-flex; align-items: center; gap: 4px; }
+.car__specs svg { width: 20px; height: 20px; fill: var(--red); }
+.car__panel img { width: 100%; max-width: 240px; height: auto; margin: 8px 0 0 auto; }
+.car__side { display: flex; flex-direction: column; gap: 16px; padding: 24px; min-width: 0; }
+.car__side .btn { align-self: flex-start; }
+.car__label { margin: 0; font: 600 14px/1.5 var(--sans); color: var(--muted); }
+.car__scroller { position: relative; }
+.car__routes {
+  list-style: none; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-behavior: smooth; scrollbar-width: none; padding: 4px 0;
+}
+.car__routes::-webkit-scrollbar { display: none; }
+.car__routes li { flex: 0 0 184px; scroll-snap-align: start; }
+.car__routes a {
+  display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 16px;
+  border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); text-decoration: none;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.car__routes a:hover { border-color: var(--gold); transform: translateY(-4px); }
+.car__routes strong { font-size: 16px; line-height: 1.3; }
+.car__from, .car__km { font-size: 14px; color: var(--muted); }
+.car__price { margin-top: auto; padding-top: 8px; font-size: 14px; font-weight: 600; color: var(--red); }
+.car__arrow { display: none; }
+@media (min-width: 760px) {
+  .car { grid-template-columns: 280px 1fr; }
+  .car__panel {
+    padding: 32px 48px 24px 32px; border-bottom: 0;
+    clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 50%, calc(100% - 32px) 100%, 0 100%);
+  }
+  .car__panel img { margin-top: auto; }
+  .car__side { padding: 32px 32px 32px 16px; }
+  .car__arrow { display: grid; z-index: 1; }
+  .car__arrow--prev { left: -12px; }
+  .car__arrow--next { right: -12px; }
+}
 
 /* Booking */
 .book__grid { display: grid; gap: 32px; }
