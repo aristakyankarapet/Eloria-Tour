@@ -90,11 +90,33 @@ const ROUTES = [
   },
 ];
 
+const CARS = [
+  { id: "comfort-sedan", name: "Comfort sedan", seats: "1–3" },
+  { id: "business-sedan", name: "Business sedan", seats: "1–3" },
+  { id: "minivan", name: "Minivan", seats: "4–7" },
+  { id: "minibus", name: "Minibus", seats: "8–18" },
+  { id: "bus", name: "Bus", seats: "19–50" },
+];
+
+// Most requested directions from Yerevan, with approximate road distance
+const POPULAR = [
+  { km: 12, to: { hy: "Զվարթնոց օդանավակայան", en: "Zvartnots Airport", ru: "Аэропорт Звартноц" } },
+  { km: 20, to: { hy: "Էջմիածին", en: "Etchmiadzin", ru: "Эчмиадзин" } },
+  { km: 30, to: { hy: "Գառնի", en: "Garni", ru: "Гарни" } },
+  { km: 60, to: { hy: "Ծաղկաձոր", en: "Tsaghkadzor", ru: "Цахкадзор" } },
+  { km: 65, to: { hy: "Սևան", en: "Sevan", ru: "Севан" } },
+  { km: 100, to: { hy: "Դիլիջան", en: "Dilijan", ru: "Дилижан" } },
+  { km: 120, to: { hy: "Գյումրի", en: "Gyumri", ru: "Гюмри" } },
+  { km: 175, to: { hy: "Ջերմուկ", en: "Jermuk", ru: "Джермук" } },
+  { km: 240, to: { hy: "Գորիս", en: "Goris", ru: "Горис" } },
+  { km: 280, to: { hy: "Թբիլիսի", en: "Tbilisi", ru: "Тбилиси" } },
+];
+
 const T = {
   hy: {
     "title.home": "Eloria Tour — Տուրեր Հայաստանում", "title.routes": "Երթուղիներ — Eloria Tour", "title.cars": "Մեքենաներ — Eloria Tour", "title.book": "Ամրագրում — Eloria Tour", "title.contacts": "Կապ — Eloria Tour",
     "home.t": "Բացահայտեք Հայաստանը մեզ հետ", "home.d": "Ընտրեք երթուղին, մեքենայի դասը և ամրագրեք ձեր ճամփորդությունը մի քանի րոպեում։", "home.more": "Մանրամասն",
-    "tile.routes": "Հինգ ընտրված երթուղի և ձեր սեփականը", "tile.cars": "Ստանդարտ կամ Comfort՝ ձեր ընտրությամբ", "tile.book": "Լրացրեք ձևը և ուղարկեք մեզ",
+    "tile.routes": "Հինգ ընտրված երթուղի և ձեր սեփականը", "tile.cars": "Սեդանից մինչև ավտոբուս՝ ցանկացած խմբի համար", "tile.book": "Լրացրեք ձևը և ուղարկեք մեզ",
     "contacts.lead": "Մենք միշտ կապի մեջ ենք․ գրեք կամ զանգահարեք ձեզ հարմար ձևով։",
     "c.phone": "Հեռախոս", "c.write": "Գրեք կամ հետևեք մեզ", "c.langsT": "Գիդերի լեզուները", "c.langsD": "Հայերեն, անգլերեն, ռուսերեն և իտալերեն",
     "c.meetT": "Հանդիպման վայր", "c.meetD": "Բոլոր տուրերը մեկնում են Երևանի Հանրապետության հրապարակից։ Ճշգրիտ ժամը կհաստատենք ամրագրելիս։", "c.office": "Գրասենյակը՝ շուտով", "c.map": "Հանրապետության հրապարակ, Երևան",
@@ -106,19 +128,16 @@ const T = {
     "hero.cta1": "Ընտրել երթուղի", "hero.cta2": "Իմ երթուղին",
     "f1.t": "Գիդեր 4 լեզվով", "f1.d": "Հայերեն, անգլերեն, ռուսերեն և իտալերեն՝ պատմությունը ձեր լեզվով։",
     "f2.t": "Մեկնում Հանրապետության հրապարակից", "f2.d": "Հանդիպում ենք Երևանի սրտում՝ հեշտ ու հասկանալի։",
-    "f3.t": "Երկու դասի մեքենաներ", "f3.d": "Ստանդարտ կամ Comfort՝ ըստ ձեր ցանկության և խմբի չափի։",
+    "f3.t": "Հինգ դասի մեքենաներ", "f3.d": "Comfort և Business սեդաններ, մինիվեն, միկրոավտոբուս և ավտոբուս՝ ըստ խմբի չափի։",
     "f4.t": "Ձեր սեփական երթուղին", "f4.d": "Ասեք, թե ուր եք ուզում գնալ, և մենք կկազմենք ճանապարհը։",
     "routes.title": "Մեր երթուղիները",
     "routes.lead": "Հինգ ճանապարհ, որոնք բացում են Հայաստանի հոգին՝ վանքերից մինչև լեռնային լճեր։",
     "routes.book": "Ամրագրել", "gallery.prev": "Նախորդ նկարը", "gallery.next": "Հաջորդ նկարը",
     "custom.t": "Ձեր երազանքի երթուղին", "custom.d": "Ամբերդ, Սաղմոսավանք, Հաղպատ, թե՞ մի վայր, որի մասին քչերը գիտեն։ Գրեք մեզ, և մենք կկազմակերպենք։", "custom.btn": "Առաջարկել երթուղի",
     "classes.title": "Ընտրեք ձեր հարմարավետությունը",
-    "classes.lead": "Երկու դաս՝ մեկ որակ։ Բոլոր տուրերն անցկացնում են փորձառու վարորդներ և պրոֆեսիոնալ գիդեր։",
+    "classes.lead": "Հինգ դասի մեքենաներ՝ սեդանից մինչև ավտոբուս։ Յուրաքանչյուրի համար՝ ամենահաճախ ընտրվող ուղղությունները։",
     "classes.choose": "Ընտրել",
-    "std.t": "Ստանդարտ", "std.sub": "Հուսալի և հարմար՝ ցանկացած խմբի համար",
-    "std.1": "Հարմարավետ սեդաններ և միկրոավտոբուսներ", "std.2": "Փորձառու վարորդ", "std.3": "Պրոֆեսիոնալ գիդ", "std.4": "Կանգառներ լուսանկարների համար",
-    "cmf.t": "Comfort", "cmf.sub": "Ամեն ինչ ստանդարտից, գումարած՝",
-    "cmf.1": "Նոր արտադրության հարմարավետ մեքենաներ", "cmf.2": "Թանգարանների մուտքի տոմսերը ներառված են", "cmf.3": "Խմելու ջուր ամբողջ ճանապարհին", "cmf.4": "Wi‑Fi մեքենայում",
+    "cars.seats": "Ուղևոր", "cars.popular": "Հաճախ ընտրվող ուղղություններ", "cars.from": "Երևան", "cars.km": "կմ",
     "price": "Գինը՝ շուտով",
     "book.title": "Ամրագրեք կամ առաջարկեք ձեր երթուղին",
     "book.lead": "Ընտրեք տուրը կամ գրեք այն վայրերը, որոնք ցանկանում եք տեսնել։ Մենք կպատասխանենք շուտով՝ գնով և մանրամասներով։",
@@ -136,7 +155,7 @@ const T = {
   en: {
     "title.home": "Eloria Tour — Tours in Armenia", "title.routes": "Routes — Eloria Tour", "title.cars": "Cars — Eloria Tour", "title.book": "Booking — Eloria Tour", "title.contacts": "Contacts — Eloria Tour",
     "home.t": "Discover Armenia with us", "home.d": "Choose a route and a car class, and book your journey in a few minutes.", "home.more": "Learn more",
-    "tile.routes": "Five hand-picked routes, or your own", "tile.cars": "Standard or Comfort — your choice", "tile.book": "Fill in the form and send it to us",
+    "tile.routes": "Five hand-picked routes, or your own", "tile.cars": "From sedans to buses, for any group", "tile.book": "Fill in the form and send it to us",
     "contacts.lead": "We are always in touch — write or call us however suits you.",
     "c.phone": "Phone", "c.write": "Write to us or follow us", "c.langsT": "Guide languages", "c.langsD": "Armenian, English, Russian and Italian",
     "c.meetT": "Meeting point", "c.meetD": "All tours depart from Republic Square in Yerevan. We will confirm the exact time when you book.", "c.office": "Office coming soon", "c.map": "Republic Square, Yerevan",
@@ -148,19 +167,16 @@ const T = {
     "hero.cta1": "Choose a route", "hero.cta2": "My own route",
     "f1.t": "Guides in 4 languages", "f1.d": "Armenian, English, Russian and Italian — history in your language.",
     "f2.t": "Departure from Republic Square", "f2.d": "We meet in the heart of Yerevan — simple and easy to find.",
-    "f3.t": "Two car classes", "f3.d": "Standard or Comfort — to suit your wishes and group size.",
+    "f3.t": "Five car classes", "f3.d": "Comfort and Business sedans, minivan, minibus and bus — to fit your group.",
     "f4.t": "Your own route", "f4.d": "Tell us where you want to go, and we will plan the journey.",
     "routes.title": "Our routes",
     "routes.lead": "Five journeys that reveal the soul of Armenia — from monasteries to mountain lakes.",
     "routes.book": "Book", "gallery.prev": "Previous photo", "gallery.next": "Next photo",
     "custom.t": "Your dream route", "custom.d": "Amberd, Saghmosavank, Haghpat — or a place few people know? Write to us and we will make it happen.", "custom.btn": "Suggest a route",
     "classes.title": "Choose your comfort",
-    "classes.lead": "Two classes, one standard of care. Every tour is led by experienced drivers and professional guides.",
+    "classes.lead": "Five classes of vehicles, from sedans to buses. For each one, the most requested directions.",
     "classes.choose": "Choose",
-    "std.t": "Standard", "std.sub": "Reliable and convenient for any group",
-    "std.1": "Comfortable sedans and minibuses", "std.2": "Experienced driver", "std.3": "Professional guide", "std.4": "Photo stops along the way",
-    "cmf.t": "Comfort", "cmf.sub": "Everything in Standard, plus:",
-    "cmf.1": "New, high-comfort vehicles", "cmf.2": "Museum entrance tickets included", "cmf.3": "Drinking water all the way", "cmf.4": "On-board Wi‑Fi",
+    "cars.seats": "Passengers", "cars.popular": "Popular directions", "cars.from": "Yerevan", "cars.km": "km",
     "price": "Prices coming soon",
     "book.title": "Book a tour or suggest your own",
     "book.lead": "Pick a tour or list the places you want to see. We will reply soon with the price and details.",
@@ -178,7 +194,7 @@ const T = {
   ru: {
     "title.home": "Eloria Tour — Туры по Армении", "title.routes": "Маршруты — Eloria Tour", "title.cars": "Автомобили — Eloria Tour", "title.book": "Бронирование — Eloria Tour", "title.contacts": "Контакты — Eloria Tour",
     "home.t": "Откройте Армению вместе с нами", "home.d": "Выберите маршрут и класс автомобиля и забронируйте поездку за несколько минут.", "home.more": "Подробнее",
-    "tile.routes": "Пять избранных маршрутов или ваш собственный", "tile.cars": "Стандарт или Comfort — на ваш выбор", "tile.book": "Заполните форму и отправьте нам",
+    "tile.routes": "Пять избранных маршрутов или ваш собственный", "tile.cars": "От седана до автобуса — для любой группы", "tile.book": "Заполните форму и отправьте нам",
     "contacts.lead": "Мы всегда на связи — пишите или звоните, как вам удобно.",
     "c.phone": "Телефон", "c.write": "Пишите или подписывайтесь", "c.langsT": "Языки гидов", "c.langsD": "Армянский, английский, русский и итальянский",
     "c.meetT": "Место встречи", "c.meetD": "Все туры отправляются с площади Республики в Ереване. Точное время подтвердим при бронировании.", "c.office": "Офис — скоро", "c.map": "Площадь Республики, Ереван",
@@ -190,19 +206,16 @@ const T = {
     "hero.cta1": "Выбрать маршрут", "hero.cta2": "Свой маршрут",
     "f1.t": "Гиды на 4 языках", "f1.d": "Армянский, английский, русский и итальянский — история на вашем языке.",
     "f2.t": "Отправление с площади Республики", "f2.d": "Встречаемся в самом сердце Еревана — легко найти.",
-    "f3.t": "Два класса автомобилей", "f3.d": "Стандарт или Comfort — по вашему желанию и размеру группы.",
+    "f3.t": "Пять классов автомобилей", "f3.d": "Comfort и Business седаны, минивэн, микроавтобус и автобус — под размер группы.",
     "f4.t": "Ваш собственный маршрут", "f4.d": "Скажите, куда хотите поехать, а мы составим путь.",
     "routes.title": "Наши маршруты",
     "routes.lead": "Пять дорог, открывающих душу Армении — от монастырей до горных озёр.",
     "routes.book": "Забронировать", "gallery.prev": "Предыдущее фото", "gallery.next": "Следующее фото",
     "custom.t": "Маршрут вашей мечты", "custom.d": "Амберд, Сагмосаванк, Ахпат — или место, о котором знают немногие? Напишите нам, и мы всё организуем.", "custom.btn": "Предложить маршрут",
     "classes.title": "Выберите свой комфорт",
-    "classes.lead": "Два класса — одно качество. Все туры проводят опытные водители и профессиональные гиды.",
+    "classes.lead": "Пять классов автомобилей — от седана до автобуса. Для каждого — самые популярные направления.",
     "classes.choose": "Выбрать",
-    "std.t": "Стандарт", "std.sub": "Надёжно и удобно для любой группы",
-    "std.1": "Удобные седаны и микроавтобусы", "std.2": "Опытный водитель", "std.3": "Профессиональный гид", "std.4": "Остановки для фото",
-    "cmf.t": "Comfort", "cmf.sub": "Всё из Стандарта, плюс:",
-    "cmf.1": "Новые комфортабельные автомобили", "cmf.2": "Входные билеты в музеи включены", "cmf.3": "Питьевая вода всю дорогу", "cmf.4": "Wi‑Fi в машине",
+    "cars.seats": "Пассажиров", "cars.popular": "Популярные направления", "cars.from": "Ереван", "cars.km": "км",
     "price": "Цены скоро",
     "book.title": "Забронируйте тур или предложите свой",
     "book.lead": "Выберите тур или напишите места, которые хотите увидеть. Мы скоро ответим с ценой и деталями.",
@@ -227,6 +240,24 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const t = (k) => T[lang][k] ?? k;
 
 const page = document.body.dataset.page || "home";
+
+function renderCars() {
+  const grid = $("#carsGrid");
+  if (!grid) return;
+  const list = POPULAR.map((r) => `<li><span>${t("cars.from")} – ${r.to[lang]}</span><span class="car__km">${r.km} ${t("cars.km")}</span></li>`).join("");
+  grid.innerHTML = CARS.map((c) => `
+    <article class="class-card car reveal">
+      <div class="car__head">
+        <h3>${c.name}</h3>
+        <span class="badge">${t("cars.seats")}: ${c.seats}</span>
+      </div>
+      <h4 class="car__label">${t("cars.popular")}</h4>
+      <ul class="car__routes">${list}</ul>
+      <p class="price">${t("price")}</p>
+      <a class="btn btn--primary" href="booking.html?class=${c.id}">${t("classes.choose")}</a>
+    </article>`).join("");
+  observeReveal();
+}
 
 function renderRoutes() {
   const grid = $("#routesGrid");
@@ -288,6 +319,7 @@ function applyLang(next) {
   $$("[data-i18n-title]").forEach((el) => { el.title = t(el.dataset.i18nTitle); });
   $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   renderRoutes();
+  renderCars();
   if (typeof syncCustom === "function") syncCustom();
 }
 
@@ -425,7 +457,7 @@ if (form) {
       `${t("form.route")}: ${route}`,
       `${t("form.date")}: ${d.get("date")}`,
       `${t("form.people")}: ${d.get("people")}`,
-      `${t("form.class")}: ${d.get("class") === "comfort" ? "Comfort" : t("std.t")}`,
+      `${t("form.class")}: ${CARS.find((c) => c.id === d.get("class")).name}`,
       `${t("form.guide")}: ${t("lang." + d.get("guide"))}`,
     ];
     if (d.get("note")) lines.push(`${t("form.note")}: ${d.get("note")}`);

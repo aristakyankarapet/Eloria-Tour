@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif+Armenian:wght@600&family=Noto+Serif:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body data-page="cars">
 
@@ -43,7 +43,7 @@
     <div class="container page-hero__content">
       <div class="ornament ornament--light" aria-hidden="true"><img src="assets/grapes.svg" alt="" width="40" height="45"><img src="assets/pomegranate.svg" alt="" width="56" height="63"><img class="flip" src="assets/grapes.svg" alt="" width="40" height="45"></div>
       <h1 data-i18n="nav.classes">Մեքենաներ</h1>
-      <p data-i18n="classes.lead">Երկու դաս՝ մեկ որակ։ Բոլոր տուրերն անցկացնում են փորձառու վարորդներ և պրոֆեսիոնալ գիդեր։</p>
+      <p data-i18n="classes.lead">Հինգ դասի մեքենաներ՝ սեդանից մինչև ավտոբուս։ Յուրաքանչյուրի համար՝ ամենահաճախ ընտրվող ուղղությունները։</p>
     </div>
   </section>
 
@@ -51,33 +51,7 @@
 
   <section class="section classes" id="classes">
     <div class="container">
-      <div class="classes__grid">
-        <article class="class-card reveal">
-          <h3 data-i18n="std.t">Ստանդարտ</h3>
-          <p class="class-card__sub" data-i18n="std.sub">Հուսալի և հարմար՝ ցանկացած խմբի համար</p>
-          <ul class="checks">
-            <li data-i18n="std.1">Հարմարավետ սեդաններ և միկրոավտոբուսներ</li>
-            <li data-i18n="std.2">Փորձառու վարորդ</li>
-            <li data-i18n="std.3">Պրոֆեսիոնալ գիդ</li>
-            <li data-i18n="std.4">Կանգառներ լուսանկարների համար</li>
-          </ul>
-          <p class="price" data-i18n="price">Գինը՝ շուտով</p>
-          <a class="btn btn--light" href="booking.html?class=standard" data-i18n="classes.choose">Ընտրել</a>
-        </article>
-        <article class="class-card class-card--comfort reveal">
-          <span class="badge">Comfort</span>
-          <h3 data-i18n="cmf.t">Comfort</h3>
-          <p class="class-card__sub" data-i18n="cmf.sub">Ամեն ինչ ստանդարտից, գումարած՝</p>
-          <ul class="checks">
-            <li data-i18n="cmf.1">Նոր արտադրության հարմարավետ մեքենաներ</li>
-            <li data-i18n="cmf.2">Թանգարանների մուտքի տոմսերը ներառված են</li>
-            <li data-i18n="cmf.3">Խմելու ջուր ամբողջ ճանապարհին</li>
-            <li data-i18n="cmf.4">Wi‑Fi մեքենայում</li>
-          </ul>
-          <p class="price" data-i18n="price">Գինը՝ շուտով</p>
-          <a class="btn btn--primary" href="booking.html?class=comfort" data-i18n="classes.choose">Ընտրել</a>
-        </article>
-      </div>
+      <div class="classes__grid cars__grid" id="carsGrid"></div>
     </div>
   </section>
 </main>
@@ -134,6 +108,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>
