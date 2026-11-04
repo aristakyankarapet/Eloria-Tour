@@ -255,7 +255,7 @@ function renderCars() {
           <span title="${t("cars.seats")}">${ICON_PAX}<span class="sr-only">${t("cars.seats")}</span> × ${c.seats}</span>
           <span title="${t("cars.bags")}">${ICON_BAG}<span class="sr-only">${t("cars.bags")}</span> × ${c.bags}</span>
         </p>
-        <img src="assets/cars/${c.id}.svg" alt="${c.name}" width="240" height="112" loading="lazy">
+        <img src="assets/cars/${c.id}.jpg" alt="${c.name}" width="800" height="600" loading="lazy">
       </div>
       <div class="car__side">
         <h4 class="car__label">${t("cars.popular")}</h4>
