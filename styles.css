@@ -106,7 +106,12 @@ ul, ol { margin: 0; padding: 0; }
 }
 .pick__cur { display: inline-flex; align-items: center; gap: 8px; }
 .flag { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(43, 26, 20, .12); flex: none; }
-.pick__menu button:has(.flag) { display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap; }
+.sym {
+  display: inline-grid; place-items: center; width: 24px; height: 24px; flex: none; border-radius: 50%;
+  background: var(--sand); color: var(--red); font: 600 14px/1 var(--sans);
+}
+.pick__menu button[aria-pressed="true"] .sym { background: rgba(251, 245, 234, .2); color: var(--cream); }
+.pick__menu button:has(.flag), .pick__menu button:has(.sym) { display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap; }
 .pick__label { font-weight: 400; }
 .pick__label strong { font-weight: 600; margin-right: 4px; }
 .pick__menu button[aria-pressed="true"] .flag { box-shadow: 0 0 0 1px rgba(251, 245, 234, .6); }

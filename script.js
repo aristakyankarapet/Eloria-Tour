@@ -467,7 +467,7 @@ $$("[data-lang]").forEach((b) => b.addEventListener("click", () => { applyLang(b
 function applyCurrency(next) {
   currency = next;
   localStorage.setItem("eloria-cur", currency);
-  $("#curCur").innerHTML = `${$(`[data-cur="${currency}"] .flag`).outerHTML}<span class="pick__code">${currency}</span>`;
+  $("#curCur").innerHTML = `${$(`[data-cur="${currency}"] .sym`).outerHTML}<span class="pick__code">${currency}</span>`;
   $$("[data-cur]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cur === currency)));
   renderCars();
 }

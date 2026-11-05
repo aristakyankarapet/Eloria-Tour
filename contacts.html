@@ -6,7 +6,7 @@
   fetch("version.txt", { cache: "no-store" }).then((r) => r.text()).then((v) => {
     v = v.trim();
     const u = new URL(location.href);
-    if (v && v !== "22" && u.searchParams.get("v") !== v) { u.searchParams.set("v", v); location.replace(u); }
+    if (v && v !== "23" && u.searchParams.get("v") !== v) { u.searchParams.set("v", v); location.replace(u); }
   }).catch(() => {});
 </script>
 <head>
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif+Armenian:wght@600&family=Noto+Serif:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body data-page="contacts">
 
@@ -44,13 +44,13 @@
         </div>
       </div>
       <div class="pick">
-        <button class="pick__btn" type="button" aria-expanded="false" aria-haspopup="true" data-i18n-aria="pick.cur" aria-label="Արժույթ"><span class="pick__cur" id="curCur"><img class="flag" src="assets/flags/hy.svg" alt="" width="24" height="16"><span class="pick__code">AMD</span></span><svg class="pick__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="pick__btn" type="button" aria-expanded="false" aria-haspopup="true" data-i18n-aria="pick.cur" aria-label="Արժույթ"><span class="pick__cur" id="curCur"><span class="sym" aria-hidden="true">֏</span><span class="pick__code">AMD</span></span><svg class="pick__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="pick__menu">
-          <button type="button" data-cur="AMD"><img class="flag" src="assets/flags/hy.svg" alt="" width="24" height="16"><span class="pick__label"><strong>AMD</strong> <span data-i18n="cur.AMD"></span></span></button>
-          <button type="button" data-cur="USD"><img class="flag" src="assets/flags/usd.svg" alt="" width="24" height="16"><span class="pick__label"><strong>USD</strong> <span data-i18n="cur.USD"></span></span></button>
-          <button type="button" data-cur="RUB"><img class="flag" src="assets/flags/ru.svg" alt="" width="24" height="16"><span class="pick__label"><strong>RUB</strong> <span data-i18n="cur.RUB"></span></span></button>
-          <button type="button" data-cur="EUR"><img class="flag" src="assets/flags/eur.svg" alt="" width="24" height="16"><span class="pick__label"><strong>EUR</strong> <span data-i18n="cur.EUR"></span></span></button>
-          <button type="button" data-cur="GEL"><img class="flag" src="assets/flags/gel.svg" alt="" width="24" height="16"><span class="pick__label"><strong>GEL</strong> <span data-i18n="cur.GEL"></span></span></button>
+          <button type="button" data-cur="AMD"><span class="sym" aria-hidden="true">֏</span><span class="pick__label"><strong>AMD</strong> <span data-i18n="cur.AMD"></span></span></button>
+          <button type="button" data-cur="USD"><span class="sym" aria-hidden="true">$</span><span class="pick__label"><strong>USD</strong> <span data-i18n="cur.USD"></span></span></button>
+          <button type="button" data-cur="RUB"><span class="sym" aria-hidden="true">₽</span><span class="pick__label"><strong>RUB</strong> <span data-i18n="cur.RUB"></span></span></button>
+          <button type="button" data-cur="EUR"><span class="sym" aria-hidden="true">€</span><span class="pick__label"><strong>EUR</strong> <span data-i18n="cur.EUR"></span></span></button>
+          <button type="button" data-cur="GEL"><span class="sym" aria-hidden="true">₾</span><span class="pick__label"><strong>GEL</strong> <span data-i18n="cur.GEL"></span></span></button>
         </div>
       </div>
     </div>
@@ -160,6 +160,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=22"></script>
+<script src="script.js?v=23"></script>
 </body>
 </html>
