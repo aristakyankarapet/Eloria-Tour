@@ -95,7 +95,7 @@ const CARS = [
   { id: "business-sedan", name: "Business sedan", seats: 3, bags: 3 },
   { id: "minivan", name: "Minivan", seats: 7, bags: 5 },
   { id: "minibus", name: "Minibus", seats: 18, bags: 15 },
-  { id: "bus", name: "Bus", seats: 50, bags: 40 },
+  { id: "bus", name: "Bus", seats: 30, bags: 30 },
 ];
 
 // Prices in AMD per car and direction, e.g. "comfort-sedan": { sevan: 15000 }.
